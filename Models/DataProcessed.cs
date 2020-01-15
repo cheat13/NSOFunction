@@ -842,6 +842,26 @@ namespace NSOFunction.Models
         public int CountCommunityHasDisaster { get; set; }
 
         /// <summary>
+        /// 41.ครัวเรือนในชนบททั้งหมด
+        /// </summary>
+        public int IsAllHouseHoldCountryside { get; set; }
+
+        /// <summary>
+        /// 42.ครัวเรือนในเขตเมืองทั้งหมด
+        /// </summary>
+        public int IsAllHouseHoldDistrict { get; set; }
+
+        /// <summary>
+        /// 43.สถานประกอบการผลิตทั้งหมด
+        /// </summary>
+        public int IsAllFactorial { get; set; }
+
+        /// <summary>
+        /// 44.สถานประกอบการบริการทั้งหมด
+        /// </summary>
+        public int IsAllCommercial { get; set; }
+
+        /// <summary>
         /// ปริมาณการใช้น้ำเพื่อการอุปโภคบริโภค
         /// </summary>
         public double CubicMeterForDrink { get; set; }

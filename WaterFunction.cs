@@ -85,11 +85,11 @@ namespace NSOFunction
                                 switch (it?.Shape)
                                 {
                                     case FieldShape.Area:
-                                        return (it?.Area?.Rai * 400 + it?.Area?.Ngan * 100 + it?.Area?.SqWa * 4) * depth ?? 0;
+                                        return (it?.Area?.Rai * 1600 + it?.Area?.Ngan * 400 + it?.Area?.SqWa * 4) * depth ?? 0;
                                     case FieldShape.Rectangle:
                                         return it?.Rectangle?.Width * it?.Rectangle?.Length * depth ?? 0;
                                     case FieldShape.Circle:
-                                        return Math.Pow((it?.Diameter ?? 0) / 2, 2) * depth ?? 0;
+                                        return 3.14 * Math.Pow((it?.Diameter ?? 0) / 2, 2) * depth ?? 0;
                                     default:
                                         return 0;
                                 }
@@ -341,7 +341,7 @@ namespace NSOFunction
 
         public CubicMeterPlumbing CubicMeterPlumbing(bool? isAgriculture, bool? isCommercial, bool? isFactorial, bool? isHouseHold, Agriculture agriculture, Commercial commercial, Factorial factorial, Residential residential, Plumbing plumbing, BuildingType? buildingType, List<DetailOrgWaterSupply> waterServices)
         {
-            var meterRentalFee = waterServices != null && waterServices.Any() ? waterServices.Where(it => it != null).Average(it => it.MeterRentalFee ?? 0) : 0;
+            var meterRentalFee = 0;
             var plumbingPrice = waterServices != null && waterServices.Any() ? waterServices.Where(it => it != null).Average(it => it.PlumbingPrice ?? 0) : 5;
             if (plumbingPrice == 0) plumbingPrice = 5;
 
@@ -600,9 +600,7 @@ namespace NSOFunction
         {
             var count = Plumbing?.WaterNotRunningCount ?? 0;
             if (count > 12) count = 12;
-            return Plumbing?.HasWaterNotRunning == true
-                ? 12 - (int)count
-                : 0;
+            return 12 - (int)count;
         }
 
         public int IndustryHasWasteWaterTreatment(bool? IsFactorial, Factorial Factory)
@@ -711,6 +709,26 @@ namespace NSOFunction
             var result = EAInfo.FirstOrDefault(x => x.CWT_NAME == province && x.AMP_NAME == district && x.TAM_NAME == subDistrict);
 
             return result?.Area_Code ?? ea.Substring(1, 6);
+        }
+
+        public int IsAllHouseHoldCountryside(string EA, bool? isHouseHold)
+        {
+            return (EA[7] == '2' && isHouseHold == true) ? 1 : 0;
+        }
+
+        public int IsAllHouseHoldDistrict(string EA, bool? isHouseHold)
+        {
+            return (EA[7] == '1' && isHouseHold == true) ? 1 : 0;
+        }
+
+        public int IsAllFactorial(bool? IsFactorial)
+        {
+            return IsFactorial == true ? 1 : 0;
+        }
+
+        public int IsAllCommercial(bool? IsCommercial)
+        {
+            return IsCommercial == true ? 1 : 0;
         }
     }
 }

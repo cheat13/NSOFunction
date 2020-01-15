@@ -146,4 +146,24 @@ public interface IWaterFunction
     /// 40.จำนวนหมู่บ้าน/ชุมชนที่มีอุทกภัย ดินโคลนถล่ม
     /// </summary>
     int CountCommunityHasDisaster(CommunitySample com);
+
+    /// <summary>
+    /// 41.ครัวเรือนในชนบททั้งหมด
+    /// </summary>
+    int IsAllHouseHoldCountryside(string EA, bool? isHouseHold);
+
+    /// <summary>
+    /// 42.ครัวเรือนในเขตเมืองทั้งหมด
+    /// </summary>
+    int IsAllHouseHoldDistrict(string EA, bool? isHouseHold);
+
+    /// <summary>
+    /// 43.สถานประกอบการผลิตทั้งหมด
+    /// </summary>
+    int IsAllFactorial(bool? IsFactorial);
+
+    /// <summary>
+    /// 44.สถานประกอบการบริการทั้งหมด
+    /// </summary>
+    int IsAllCommercial(bool? IsCommercial);
 }

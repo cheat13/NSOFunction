@@ -148,5 +148,25 @@ namespace NSOFunction
         {
             return Water.CountCommunityHasDisaster(com);
         }
+
+        public int IsAllHouseHoldCountryside(string EA, HouseHoldSample unit)
+        {
+            return Water.IsAllHouseHoldCountryside(EA, unit?.IsAgriculture);
+        }
+
+        public int IsAllHouseHoldDistrict(string EA, HouseHoldSample unit)
+        {
+            return Water.IsAllHouseHoldDistrict(EA, unit?.IsAgriculture);
+        }
+
+        public int IsAllFactorial(HouseHoldSample unit)
+        {
+            return Water.IsAllFactorial(unit?.IsFactorial);
+        }
+
+        public int IsAllCommercial(HouseHoldSample unit)
+        {
+            return Water.IsAllCommercial(unit?.IsCommercial);
+        }
     }
 }

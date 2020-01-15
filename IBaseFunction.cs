@@ -46,7 +46,7 @@ public interface IBaseFunction
     /// <summary>
     /// 9.จำนวนบ่อน้ำบาดาล สน.1
     /// </summary>
-    List<CountGroundWaterHouseHold> CountGroundWaterHouseHold(string ea,HouseHoldSample unit);
+    List<CountGroundWaterHouseHold> CountGroundWaterHouseHold(string ea, HouseHoldSample unit);
 
     /// <summary>
     /// 9.จำนวนบ่อน้ำบาดาล สน.2
@@ -90,12 +90,12 @@ public interface IBaseFunction
     /// <summary>
     /// 23.แหล่งน้ำขนาดใหญ่ กลาง และเล็ก สน.1
     /// </summary>
-    List<WaterPoolHouseHold> WaterSourcesHouseHold(string ea,HouseHoldSample unit);
+    List<WaterPoolHouseHold> WaterSourcesHouseHold(string ea, HouseHoldSample unit);
 
     /// <summary>
     /// 23.แหล่งน้ำขนาดใหญ่ กลาง และเล็ก สน.2
     /// </summary>
-    double WaterSourcesCommunity(string ea,CommunitySample com);
+    double WaterSourcesCommunity(string ea, CommunitySample com);
 
     /// <summary>
     /// 24.จำนวนโรงงานอุตสาหกรรมที่มีน้ำเสียจากระบบ
@@ -125,7 +125,7 @@ public interface IBaseFunction
     /// <summary>
     /// 34-37 ปริมาณการใช้น้ำผิวดิน
     /// </summary>
-    List<CubicMeterSurface> CubicMeterSurface(string ea,HouseHoldSample unit);
+    List<CubicMeterSurface> CubicMeterSurface(string ea, HouseHoldSample unit);
 
     /// <summary>
     /// 34.ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ) สน.2
@@ -146,4 +146,24 @@ public interface IBaseFunction
     /// 40.จำนวนหมู่บ้าน/ชุมชนที่มีอุทกภัย ดินโคลนถล่ม
     /// </summary>
     int CountCommunityHasDisaster(CommunitySample com);
+
+    /// <summary>
+    /// 41.ครัวเรือนในชนบททั้งหมด
+    /// </summary>
+    int IsAllHouseHoldCountryside(string EA, HouseHoldSample unit);
+
+    /// <summary>
+    /// 42.ครัวเรือนในเขตเมืองทั้งหมด
+    /// </summary>
+    int IsAllHouseHoldDistrict(string EA, HouseHoldSample unit);
+
+    /// <summary>
+    /// 43.สถานประกอบการผลิตทั้งหมด
+    /// </summary>
+    int IsAllFactorial(HouseHoldSample unit);
+
+    /// <summary>
+    /// 44.สถานประกอบการบริการทั้งหมด
+    /// </summary>
+    int IsAllCommercial(HouseHoldSample unit);
 }

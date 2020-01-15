@@ -61,6 +61,10 @@ namespace NSOFunction
                 var industryHasWasteWaterTreatment = baseFn.IndustryHasWasteWaterTreatment(unt);
                 var peopleInFloodedArea = baseFn.PeopleInFloodedArea(unt);
                 var cubicMeterPlumbing = baseFn.CubicMeterPlumbing(unt, bld, com);
+                var isAllHouseHoldCountryside = baseFn.IsAllHouseHoldCountryside(ea, unt);
+                var isAllHouseHoldDistrict = baseFn.IsAllHouseHoldDistrict(ea, unt);
+                var isAllFactorial = baseFn.IsAllFactorial(unt);
+                var isAllCommercial = baseFn.IsAllCommercial(unt);
 
                 var localDataProcessed = new DataProcessed
                 {
@@ -150,6 +154,10 @@ namespace NSOFunction
                     CanComputeCubicMeterSurfaceForService = StatusCompute.NA,
                     CanComputeCubicMeterSurfaceForProduct = StatusCompute.NA,
                     CanComputeCubicMeterSurfaceForDrink = StatusCompute.NA,
+                    IsAllHouseHoldCountryside = isAllHouseHoldCountryside,
+                    IsAllHouseHoldDistrict = isAllHouseHoldDistrict,
+                    IsAllFactorial = isAllFactorial,
+                    IsAllCommercial = isAllCommercial,
                     Duplicate = false,
                 };
 
