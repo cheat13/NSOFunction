@@ -143,7 +143,15 @@ namespace NSOFunction
                     var container = blobClient.GetContainerReference(com.ContainerName);
                     var commu = ReadModelFrom<CommunitySample>(container, com.BlobName);
                     commuLst.Add(commu);
+                }
 
+                var qryCommu = commuLst
+                    .GroupBy(it => string.Format("{0} {1}", it.Management?.Vil, it.Management?.Vil_name))
+                    .Select(it => it.OrderByDescending(i => i._id).First())
+                    .ToList();
+
+                foreach (var commu in qryCommu)
+                {
                     var dataProcessed = processFunction.CommunityProcessing(ea, commu);
                     dataLst.Add(dataProcessed);
 
@@ -183,7 +191,7 @@ namespace NSOFunction
                             {
                                 var containerUnt = blobClient.GetContainerReference(unt.ContainerName);
                                 var unit = ReadModelFrom<HouseHoldSample>(containerUnt, unt.BlobName);
-                                var dataProcessedLst = processFunction.UnitProcessing(ea, unit, building, commuLst);
+                                var dataProcessedLst = processFunction.UnitProcessing(ea, unit, building, qryCommu);
                                 dataLst.AddRange(dataProcessedLst);
 
                                 CurrentEATask++;
