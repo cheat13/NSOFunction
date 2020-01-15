@@ -52,6 +52,8 @@ namespace NSOFunction
                 cubicMeterPWA * (waterActivityPWA / 100) +
                 cubicMeterOther * (waterActivityOther / 100);
 
+            if (cubicMeter < 1 && cubicMeter != 0) cubicMeter = 1;
+
             return new CubicMeterRequest
             {
                 CanCompute = isChecked ? CanCumputePlumbing : StatusCompute.NA,
