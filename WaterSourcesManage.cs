@@ -43,7 +43,7 @@ namespace NSOFunction
                     case FieldShape.Rectangle:
                         return (projectArea.Rectangle.Width ?? 0) * (projectArea.Rectangle.Length ?? 0) * (projectArea.Depth ?? 0);
                     case FieldShape.Circle:
-                        return 3.14 * Math.Pow((projectArea.Diameter ?? 0) / 2, 2);
+                        return 3.14 * Math.Pow((projectArea.Diameter ?? 0) / 2, 2) * (projectArea.Depth ?? 0);
                     default:
                         return 0;
                 }
