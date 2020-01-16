@@ -13,5 +13,10 @@ namespace NSOFunction.Models
         /// ปริมาณน้ำ
         /// </summary>
         public double CubicMeter { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง
+        /// </summary>
+        public bool Adjusted { get; set; }
     }
 }

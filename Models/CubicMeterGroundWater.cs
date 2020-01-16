@@ -165,5 +165,30 @@ namespace NSOFunction.Models
         /// 38.ปริมาณน้ำบาดาลที่พัฒนามาใช้ สน.1 (ปริมาณน้ำจากรายการ 26-29)
         /// </summary>
         public double CubicMeterGroundWaterForUse { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 26.ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล น้ำซื้อ)
+        /// </summary>
+        public bool AdjustedCubicMeterGroundWaterForAgriculture { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 27.ปริมาณการใช้น้ำบาดาลเพื่อการบริการ(น้ำบาดาล น้ำซื้อ)
+        /// </summary>
+        public bool AdjustedCubicMeterGroundWaterForService { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 28.ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม(น้ำบาดาล น้ำซื้อ)
+        /// </summary>
+        public bool AdjustedCubicMeterGroundWaterForProduct { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 29.ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล น้ำซื้อ)
+        /// </summary>
+        public bool AdjustedCubicMeterGroundWaterForDrink { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 38.ปริมาณน้ำบาดาลที่พัฒนามาใช้ (ปริมาณน้ำจากรายการ 26-29)
+        /// </summary>
+        public bool AdjustedCubicMeterGroundWaterForUse { get; set; }
     }
 }

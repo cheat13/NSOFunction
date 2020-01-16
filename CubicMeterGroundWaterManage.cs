@@ -11,6 +11,7 @@ namespace NSOFunction
         public Buying Buying { get; set; }
         public BuildingType? BuildingType { get; set; }
         public StatusCompute CanCumpute { get; set; }
+        public bool Adjusted { get; set; }
         public List<BuildingType> BDTypes { get; set; }
 
         public CubicMeterGroundWaterManage(Buying buying, BuildingType? buildingType)
@@ -31,6 +32,7 @@ namespace NSOFunction
         public CubicMeterRequest CalcPrivate(IEnumerable<GroundWaterWell> resources, WaterCharacter character)
         {
             this.CanCumpute = StatusCompute.True;
+            this.Adjusted = false;
             var cubicMeter = resources.Where(it => it != null).Sum(it =>
                  {
                      try
@@ -60,13 +62,15 @@ namespace NSOFunction
             return new CubicMeterRequest
             {
                 CanCompute = this.CanCumpute,
-                CubicMeter = cubicMeter
+                CubicMeter = cubicMeter,
+                Adjusted = this.Adjusted
             };
         }
 
         public CubicMeterRequest CalcPublic(IEnumerable<WaterConsumptionUsingPump> resources, WaterCharacter character)
         {
             this.CanCumpute = StatusCompute.True;
+            this.Adjusted = false;
             var cubicMeter = resources.Where(it => it != null).Sum(it =>
               {
                   try
@@ -92,7 +96,8 @@ namespace NSOFunction
             return new CubicMeterRequest
             {
                 CanCompute = this.CanCumpute,
-                CubicMeter = cubicMeter
+                CubicMeter = cubicMeter,
+                Adjusted = this.Adjusted
             };
         }
 
@@ -129,7 +134,11 @@ namespace NSOFunction
                 if (!it.PumpAuto == true)
                 {
                     var pumpsPerYear = it.NumberOfPumpsPerYear ?? 0;
-                    if (pumpsPerYear < 0) pumpsPerYear = Math.Abs(pumpsPerYear);
+                    if (pumpsPerYear < 0)
+                    {
+                        this.Adjusted = true;
+                        pumpsPerYear = Math.Abs(pumpsPerYear);
+                    };
                     if (pumpsPerYear > 10) pumpsPerYear = 10;
                     return (it.HoursPerPump ?? 0) * pumpsPerYear * CalcPumpRate(it, isGround);
                 }

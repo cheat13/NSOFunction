@@ -180,6 +180,11 @@ namespace NSOFunction
                                 CubicMeterGroundWaterForProduct = pro.CubicMeter,
                                 CubicMeterGroundWaterForDrink = dri.CubicMeter,
                                 CubicMeterGroundWaterForUse = agr.CubicMeter + ser.CubicMeter + pro.CubicMeter + dri.CubicMeter,
+                                AdjustedCubicMeterGroundWaterForAgriculture = agr.Adjusted,
+                                AdjustedCubicMeterGroundWaterForService = ser.Adjusted,
+                                AdjustedCubicMeterGroundWaterForProduct = pro.Adjusted,
+                                AdjustedCubicMeterGroundWaterForDrink = dri.Adjusted,
+                                AdjustedCubicMeterGroundWaterForUse = agr.Adjusted || ser.Adjusted || pro.Adjusted || dri.Adjusted,
                             };
                         }
                     ).ToList();
@@ -235,6 +240,11 @@ namespace NSOFunction
                                 CubicMeterGroundWaterForProduct = pro.CubicMeter,
                                 CubicMeterGroundWaterForDrink = dri.CubicMeter,
                                 CubicMeterGroundWaterForUse = agr.CubicMeter + ser.CubicMeter + pro.CubicMeter + dri.CubicMeter,
+                                AdjustedCubicMeterGroundWaterForAgriculture = agr.Adjusted,
+                                AdjustedCubicMeterGroundWaterForService = ser.Adjusted,
+                                AdjustedCubicMeterGroundWaterForProduct = pro.Adjusted,
+                                AdjustedCubicMeterGroundWaterForDrink = dri.Adjusted,
+                                AdjustedCubicMeterGroundWaterForUse = agr.Adjusted || ser.Adjusted || pro.Adjusted || dri.Adjusted,
                             };
                         })
                     .ToList();
@@ -279,6 +289,11 @@ namespace NSOFunction
                                 CubicMeterGroundWaterForProduct = items.Sum(it => it.CubicMeterGroundWaterForProduct),
                                 CubicMeterGroundWaterForDrink = items.Sum(it => it.CubicMeterGroundWaterForDrink),
                                 CubicMeterGroundWaterForUse = items.Sum(it => it.CubicMeterGroundWaterForUse),
+                                AdjustedCubicMeterGroundWaterForAgriculture = items.Any(it => it.AdjustedCubicMeterGroundWaterForAgriculture),
+                                AdjustedCubicMeterGroundWaterForService = items.Any(it => it.AdjustedCubicMeterGroundWaterForService),
+                                AdjustedCubicMeterGroundWaterForProduct = items.Any(it => it.AdjustedCubicMeterGroundWaterForProduct),
+                                AdjustedCubicMeterGroundWaterForDrink = items.Any(it => it.AdjustedCubicMeterGroundWaterForDrink),
+                                AdjustedCubicMeterGroundWaterForUse = items.Any(it => it.AdjustedCubicMeterGroundWaterForUse),
                             };
                         })
                     .ToList();
