@@ -131,7 +131,7 @@ namespace NSOFunction
         {
             return pumps.Where(it => it != null).Sum(it =>
             {
-                if (!it.PumpAuto == true)
+                if (it?.PumpAuto == false)
                 {
                     var pumpsPerYear = it.NumberOfPumpsPerYear ?? 0;
                     if (pumpsPerYear < 0)

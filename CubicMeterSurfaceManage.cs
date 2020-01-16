@@ -123,25 +123,27 @@ namespace NSOFunction
         {
             var canCumpute = StatusCompute.True;
             var adjusted = false;
-            var cubicMeter = pumps.Where(it => it != null).Sum(it =>
-            {
-                if (!it.PumpAuto == true)
+            var cubicMeter = pumps != null
+                ? pumps.Where(it => it != null).Sum(it =>
                 {
-                    var pumpsPerYear = it.NumberOfPumpsPerYear ?? 0;
-                    if (pumpsPerYear < 0)
+                    if (it?.PumpAuto == false)
                     {
-                        adjusted = true;
-                        pumpsPerYear = Math.Abs(pumpsPerYear);
-                    };
-                    if (pumpsPerYear > 10) pumpsPerYear = 10;
-                    return (it.HoursPerPump ?? 0) * pumpsPerYear * CalcPumpRate(it, isGround);
-                }
-                else
-                {
-                    canCumpute = StatusCompute.False;
-                    return 0;
-                }
-            });
+                        var pumpsPerYear = it.NumberOfPumpsPerYear ?? 0;
+                        if (pumpsPerYear < 0)
+                        {
+                            adjusted = true;
+                            pumpsPerYear = Math.Abs(pumpsPerYear);
+                        };
+                        if (pumpsPerYear > 10) pumpsPerYear = 10;
+                        return (it.HoursPerPump ?? 0) * pumpsPerYear * CalcPumpRate(it, isGround);
+                    }
+                    else
+                    {
+                        canCumpute = StatusCompute.False;
+                        return 0;
+                    }
+                })
+                : 0;
 
             return new CubicMeterRequest
             {
