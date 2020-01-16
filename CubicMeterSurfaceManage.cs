@@ -100,6 +100,7 @@ namespace NSOFunction
                 if (!it.PumpAuto == true)
                 {
                     var pumpsPerYear = it.NumberOfPumpsPerYear ?? 0;
+                    if (pumpsPerYear < 0) pumpsPerYear = Math.Abs(pumpsPerYear);
                     if (pumpsPerYear > 10) pumpsPerYear = 10;
                     return (it.HoursPerPump ?? 0) * pumpsPerYear * CalcPumpRate(it, isGround);
                 }

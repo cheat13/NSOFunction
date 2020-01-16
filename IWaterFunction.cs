@@ -57,7 +57,7 @@ public interface IWaterFunction
     /// 10.จำนวนประชากรทั้งหมด
     /// 11.จำนวนประชากรวัยทำงาน
     /// </summary>
-    PopulationCount CountPopulation(bool? IsHouseHold, Residential Residence);
+    PopulationCount CountPopulation(bool? IsHouseHold, Population Population, Residential Residence);
 
     /// <summary>
     /// 15.พื้นที่ชลประทาน สน.2
@@ -105,7 +105,7 @@ public interface IWaterFunction
     /// <summary>
     /// 25.ประชากรที่อาศัยในครัวเรือนที่มีน้ำท่วม สน.1
     /// </summary>
-    int PeopleInFloodedArea(bool? IsHouseHold, bool? Flooded, double? MemberCount); // ???
+    int PeopleInFloodedArea(bool? IsHouseHold, bool? Flooded, Population Population, Residential Residence); // ???
 
     /// <summary>
     /// 26-29,38 ปริมาณการใช้น้ำบาดาล

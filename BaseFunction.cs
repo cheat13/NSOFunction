@@ -61,7 +61,7 @@ namespace NSOFunction
 
         public PopulationCount CountPopulation(HouseHoldSample unit)
         {
-            return Water.CountPopulation(unit?.IsHouseHold, unit?.Residence);
+            return Water.CountPopulation(unit?.IsHouseHold, unit?.Population, unit?.Residence);
         }
 
         public WaterFlood Disasterous(HouseHoldSample unit)
@@ -91,7 +91,7 @@ namespace NSOFunction
 
         public int PeopleInFloodedArea(HouseHoldSample unit)
         {
-            return Water.PeopleInFloodedArea(unit?.IsHouseHold, unit?.Disaster?.Flooded, unit?.Residence?.MemberCount);
+            return Water.PeopleInFloodedArea(unit?.IsHouseHold, unit?.Disaster?.Flooded, unit?.Population, unit?.Residence);
         }
 
         public double FieldCommunity(CommunitySample com)

@@ -110,9 +110,9 @@ namespace NSOFunction
             return wsManage.GetWaterSources();
         }
 
-        public PopulationCount CountPopulation(bool? IsHouseHold, Residential Residence)
+        public PopulationCount CountPopulation(bool? IsHouseHold, Population Population, Residential Residence)
         {
-            var count = Residence?.MemberCount ?? 0;
+            var count = Population?.PersonCount ?? Residence?.MemberCount ?? 0;
             if (count == 3000000000) count = 3;
             return new PopulationCount
             {
@@ -660,9 +660,9 @@ namespace NSOFunction
             return new HouseHoldModel();
         }
 
-        public int PeopleInFloodedArea(bool? IsHouseHold, bool? Flooded, double? MemberCount)
+        public int PeopleInFloodedArea(bool? IsHouseHold, bool? Flooded, Population Population, Residential Residence)
         {
-            var count = MemberCount ?? 0;
+            var count = Population?.PersonCount ?? Residence?.MemberCount ?? 0;
             if (count == 3000000000) count = 3;
             return IsHouseHold == true && Flooded == true ? (int)count : 0;
         }
