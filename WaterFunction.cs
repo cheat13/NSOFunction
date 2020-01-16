@@ -503,6 +503,10 @@ namespace NSOFunction
                                     CubicMeterSurfaceForService = ser.CubicMeter / poolCount * count,
                                     CubicMeterSurfaceForProduct = pro.CubicMeter / poolCount * count,
                                     CubicMeterSurfaceForDrink = dri.CubicMeter / poolCount * count,
+                                    AdjustedCubicMeterSurfaceForAgriculture = agr.Adjusted,
+                                    AdjustedCubicMeterSurfaceForService = ser.Adjusted,
+                                    AdjustedCubicMeterSurfaceForProduct = pro.Adjusted,
+                                    AdjustedCubicMeterSurfaceForDrink = dri.Adjusted,
                                 };
                             }
                     ).ToList();
@@ -510,6 +514,13 @@ namespace NSOFunction
 
                 var localPool = poolInfoLst.FirstOrDefault(it => it.Area_Code == area_Code) ?? new CubicMeterSurface();
                 poolInfoLst.Remove(localPool);
+
+                var agrSurvey = cmsManage.CubicMeterSurface(WaterCharacter.IsAgriculture);
+                var serSurvey = cmsManage.CubicMeterSurface(WaterCharacter.IsCommercial);
+                var proSurvey = cmsManage.CubicMeterSurface(WaterCharacter.IsFactorial);
+                var driSurvey = cmsManage.CubicMeterSurface(WaterCharacter.IsHouseHold);
+
+                var status = new StatusComputeManage();
 
                 var localSurvey = new CubicMeterSurface
                 {
@@ -559,14 +570,18 @@ namespace NSOFunction
                     ProductRain = rain?.WaterActivities.Product ?? 0,
                     DrinkRain = rain?.WaterActivities.Drink ?? 0,
                     PlantRain = rain?.WaterActivities.Plant ?? 0,
-                    CanComputeCubicMeterSurfaceForAgriculture = localPool.CanComputeCubicMeterSurfaceForAgriculture,
-                    CanComputeCubicMeterSurfaceForService = localPool.CanComputeCubicMeterSurfaceForService,
-                    CanComputeCubicMeterSurfaceForProduct = localPool.CanComputeCubicMeterSurfaceForProduct,
-                    CanComputeCubicMeterSurfaceForDrink = localPool.CanComputeCubicMeterSurfaceForDrink,
-                    CubicMeterSurfaceForAgriculture = cmsManage.CubicMeterSurface(WaterCharacter.IsAgriculture) + localPool.CubicMeterSurfaceForAgriculture,
-                    CubicMeterSurfaceForService = cmsManage.CubicMeterSurface(WaterCharacter.IsCommercial) + localPool.CubicMeterSurfaceForService,
-                    CubicMeterSurfaceForProduct = cmsManage.CubicMeterSurface(WaterCharacter.IsFactorial) + localPool.CubicMeterSurfaceForProduct,
-                    CubicMeterSurfaceForDrink = cmsManage.CubicMeterSurface(WaterCharacter.IsHouseHold) + localPool.CubicMeterSurfaceForDrink,
+                    CanComputeCubicMeterSurfaceForAgriculture = status.CheckStatusCompute(new List<StatusCompute> { agrSurvey.CanCompute, localPool.CanComputeCubicMeterSurfaceForAgriculture }),
+                    CanComputeCubicMeterSurfaceForService = status.CheckStatusCompute(new List<StatusCompute> { serSurvey.CanCompute, localPool.CanComputeCubicMeterSurfaceForService }),
+                    CanComputeCubicMeterSurfaceForProduct = status.CheckStatusCompute(new List<StatusCompute> { proSurvey.CanCompute, localPool.CanComputeCubicMeterSurfaceForProduct }),
+                    CanComputeCubicMeterSurfaceForDrink = status.CheckStatusCompute(new List<StatusCompute> { driSurvey.CanCompute, localPool.CanComputeCubicMeterSurfaceForDrink }),
+                    CubicMeterSurfaceForAgriculture = agrSurvey.CubicMeter + localPool.CubicMeterSurfaceForAgriculture,
+                    CubicMeterSurfaceForService = serSurvey.CubicMeter + localPool.CubicMeterSurfaceForService,
+                    CubicMeterSurfaceForProduct = proSurvey.CubicMeter + localPool.CubicMeterSurfaceForProduct,
+                    CubicMeterSurfaceForDrink = driSurvey.CubicMeter + localPool.CubicMeterSurfaceForDrink,
+                    AdjustedCubicMeterSurfaceForAgriculture = agrSurvey.Adjusted || localPool.AdjustedCubicMeterSurfaceForAgriculture,
+                    AdjustedCubicMeterSurfaceForService = serSurvey.Adjusted || localPool.AdjustedCubicMeterSurfaceForService,
+                    AdjustedCubicMeterSurfaceForProduct = proSurvey.Adjusted || localPool.AdjustedCubicMeterSurfaceForProduct,
+                    AdjustedCubicMeterSurfaceForDrink = driSurvey.Adjusted || localPool.AdjustedCubicMeterSurfaceForDrink,
                 };
 
                 return poolInfoLst.Prepend(localPool).ToList();

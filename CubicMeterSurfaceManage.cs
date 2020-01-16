@@ -11,7 +11,6 @@ namespace NSOFunction
         public River River { get; set; }
         public Irrigation Irrigation { get; set; }
         public Rain Rain { get; set; }
-        private StatusCompute canCumpute { get; set; }
         private WaterCharacter character { get; set; }
 
         public CubicMeterSurfaceManage(Pool pool, River river, Irrigation irrigation, Rain rain)
@@ -23,8 +22,9 @@ namespace NSOFunction
 
         public CubicMeterRequest CalcPool(IEnumerable<WaterConsumptionUsingPump> resources, WaterCharacter character)
         {
-            this.canCumpute = StatusCompute.True;
             this.character = character;
+            var canCumpute = StatusCompute.True;
+            var adjusted = false;
             var cubicMeter = resources.Where(it => it != null).Sum(it =>
                 {
                     try
@@ -35,11 +35,13 @@ namespace NSOFunction
                         }
                         else if (it.HasPump == true)
                         {
-                            return CalcPumps(it.Pumps, false) * WaterActivity(it.WaterActivities) / 100;
+                            var PumpRequest = CalcPumps(it.Pumps, false);
+                            if (PumpRequest.Adjusted == true) adjusted = true;
+                            return PumpRequest.CubicMeter * WaterActivity(it.WaterActivities) / 100;
                         }
                         else
                         {
-                            this.canCumpute = StatusCompute.False;
+                            canCumpute = StatusCompute.False;
                             return 0;
                         }
                     }
@@ -49,33 +51,57 @@ namespace NSOFunction
 
             return new CubicMeterRequest
             {
-                CanCompute = this.canCumpute,
-                CubicMeter = cubicMeter
+                CanCompute = canCumpute,
+                CubicMeter = cubicMeter,
+                Adjusted = adjusted
             };
         }
 
-        public double CubicMeterSurface(WaterCharacter character)
+        public CubicMeterRequest CubicMeterSurface(WaterCharacter character)
         {
             this.character = character;
-            return CalcRiver() + CalcIrrigation() + CalcRain();
+            var river = CalcRiver();
+            var irrigation = CalcIrrigation();
+
+            var status = new StatusComputeManage();
+            var canComputeLst = new List<StatusCompute> { river.CanCompute, irrigation.CanCompute };
+
+            return new CubicMeterRequest
+            {
+                CanCompute = status.CheckStatusCompute(canComputeLst),
+                CubicMeter = river.CubicMeter + irrigation.CubicMeter + CalcRain(),
+                Adjusted = river.Adjusted || irrigation.Adjusted
+            };
         }
 
-        public double CalcRiver()
+        public CubicMeterRequest CalcRiver()
         {
-            return River?.HasPump == true ? (CalcPumps(River.Pumps, false) * WaterActivity(River?.WaterActivities) / 100) : 0;
+            var PumpRequest = CalcPumps(River.Pumps, false);
+
+            return new CubicMeterRequest
+            {
+                CanCompute = PumpRequest.CanCompute,
+                CubicMeter = River?.HasPump == true ? (PumpRequest.CubicMeter * WaterActivity(River?.WaterActivities) / 100) : 0,
+                Adjusted = PumpRequest.Adjusted
+            };
         }
 
-        public double CalcIrrigation()
+        public CubicMeterRequest CalcIrrigation()
         {
-            if (Irrigation?.HasCubicMeterPerMonth == true)
+            var PumpRequest = CalcPumps(Irrigation.Pumps, false);
+
+            var cubicMeter = (Irrigation?.HasCubicMeterPerMonth == true)
+                ? (Irrigation.CubicMeterPerMonth ?? 0) * 12.0 * WaterActivity(Irrigation.WaterActivities) / 100
+                : (Irrigation?.HasPump == true)
+                    ? PumpRequest.CubicMeter * WaterActivity(Irrigation.WaterActivities) / 100
+                    : 0;
+
+            return new CubicMeterRequest
             {
-                return (Irrigation.CubicMeterPerMonth ?? 0) * 12.0 * WaterActivity(Irrigation.WaterActivities) / 100;
-            }
-            else if (Irrigation?.HasPump == true)
-            {
-                return CalcPumps(Irrigation.Pumps, false) * WaterActivity(Irrigation.WaterActivities) / 100;
-            }
-            return 0;
+                CanCompute = PumpRequest.CanCompute,
+                CubicMeter = cubicMeter,
+                Adjusted = PumpRequest.Adjusted
+            };
         }
 
         public double CalcRain()
@@ -93,14 +119,20 @@ namespace NSOFunction
                 : 0;
         }
 
-        private double CalcPumps(List<Pump> pumps, bool isGround)
+        private CubicMeterRequest CalcPumps(List<Pump> pumps, bool isGround)
         {
-            return pumps.Where(it => it != null).Sum(it =>
+            var canCumpute = StatusCompute.True;
+            var adjusted = false;
+            var cubicMeter = pumps.Where(it => it != null).Sum(it =>
             {
                 if (!it.PumpAuto == true)
                 {
                     var pumpsPerYear = it.NumberOfPumpsPerYear ?? 0;
-                    if (pumpsPerYear < 0) pumpsPerYear = Math.Abs(pumpsPerYear);
+                    if (pumpsPerYear < 0)
+                    {
+                        adjusted = true;
+                        pumpsPerYear = Math.Abs(pumpsPerYear);
+                    };
                     if (pumpsPerYear > 10) pumpsPerYear = 10;
                     return (it.HoursPerPump ?? 0) * pumpsPerYear * CalcPumpRate(it, isGround);
                 }
@@ -110,6 +142,13 @@ namespace NSOFunction
                     return 0;
                 }
             });
+
+            return new CubicMeterRequest
+            {
+                CanCompute = canCumpute,
+                CubicMeter = cubicMeter,
+                Adjusted = adjusted,
+            };
         }
 
         private double CalcPumpRate(Pump pump, bool isGround)

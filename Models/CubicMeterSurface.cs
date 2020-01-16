@@ -17,7 +17,7 @@ namespace NSOFunction.Models
         /// </summary>
         public int WaterResourceCount { get; set; }
 
-         /// <summary>
+        /// <summary>
         /// ปริมาณน้ำสระน้ำ ลบ.ม./เดือน 
         /// </summary>
         public double CubicMeterPerMonthPool { get; set; }
@@ -31,7 +31,7 @@ namespace NSOFunction.Models
         /// จำนวนเครื่องสูบน้ำอัตโนมัติสำหรับสระน้ำ
         /// </summary>
         public int PumpAutoPool { get; set; }
-        
+
         /// <summary>
         /// สระน้ำ เค็ม/กร่อย  
         /// </summary>
@@ -176,7 +176,7 @@ namespace NSOFunction.Models
         /// แม่น้ำ ฝ้าขาว
         /// </summary>
         public bool FogWaterRiver { get; set; }
-        
+
         /// <summary>
         /// สัดส่วนแม่น้ำเพื่อการเกษตร
         /// </summary>
@@ -231,7 +231,7 @@ namespace NSOFunction.Models
         /// สัดส่วนน้ำฝนกักเก็บเพื่อรดน้้าพืชในบริเวณที่อยู่อาศัย
         /// </summary>
         public double PlantRain { get; set; }
-        
+
         /// <summary>
         /// คำนวณปริมาณการใช้น้ำผิวดินเพื่อการเกษตรได้
         /// </summary>
@@ -271,5 +271,25 @@ namespace NSOFunction.Models
         /// 37.ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ) สน.1
         /// </summary>
         public double CubicMeterSurfaceForDrink { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 34.ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// </summary>
+        public bool AdjustedCubicMeterSurfaceForAgriculture { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 35.ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// </summary>
+        public bool AdjustedCubicMeterSurfaceForService { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 36.ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// </summary>
+        public bool AdjustedCubicMeterSurfaceForProduct { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 37.ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// </summary>
+        public bool AdjustedCubicMeterSurfaceForDrink { get; set; }
     }
 }
