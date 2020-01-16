@@ -76,7 +76,7 @@ namespace NSOFunction
 
         public CubicMeterRequest CalcRiver()
         {
-            var PumpRequest = CalcPumps(River.Pumps, false);
+            var PumpRequest = CalcPumps(River?.Pumps, false);
 
             return new CubicMeterRequest
             {
@@ -88,7 +88,7 @@ namespace NSOFunction
 
         public CubicMeterRequest CalcIrrigation()
         {
-            var PumpRequest = CalcPumps(Irrigation.Pumps, false);
+            var PumpRequest = CalcPumps(Irrigation?.Pumps, false);
 
             var cubicMeter = (Irrigation?.HasCubicMeterPerMonth == true)
                 ? (Irrigation.CubicMeterPerMonth ?? 0) * 12.0 * WaterActivity(Irrigation.WaterActivities) / 100
