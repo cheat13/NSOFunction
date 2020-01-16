@@ -42,6 +42,7 @@ namespace NSOFunction
                             CanComputeCubicMeterSurfaceForService = StatusCompute.NA,
                             CanComputeCubicMeterSurfaceForProduct = StatusCompute.NA,
                             CanComputeCubicMeterSurfaceForDrink = StatusCompute.NA,
+                            CanComputeCubicMeterForDrink = StatusCompute.NA,
                             Duplicate = false,
                         }
                     };
@@ -159,6 +160,7 @@ namespace NSOFunction
                     IsAllFactorial = isAllFactorial,
                     IsAllCommercial = isAllCommercial,
                     Duplicate = false,
+                    CanComputeCubicMeterForDrink = StatusCompute.NA,
                 };
 
                 var countGroundWaterHouseHold = baseFn.CountGroundWaterHouseHold(ea, unt);
@@ -183,6 +185,7 @@ namespace NSOFunction
                         CanComputeCubicMeterSurfaceForService = StatusCompute.NA,
                         CanComputeCubicMeterSurfaceForProduct = StatusCompute.NA,
                         CanComputeCubicMeterSurfaceForDrink = StatusCompute.NA,
+                        CanComputeCubicMeterForDrink = StatusCompute.NA,
                         Duplicate = false,
                     });
 
@@ -208,6 +211,7 @@ namespace NSOFunction
                         CanComputeCubicMeterSurfaceForService = StatusCompute.NA,
                         CanComputeCubicMeterSurfaceForProduct = StatusCompute.NA,
                         CanComputeCubicMeterSurfaceForDrink = StatusCompute.NA,
+                        CanComputeCubicMeterForDrink = StatusCompute.NA,
                         Duplicate = false,
                     });
 
@@ -258,6 +262,7 @@ namespace NSOFunction
                         CanComputeCubicMeterSurfaceForService = StatusCompute.NA,
                         CanComputeCubicMeterSurfaceForProduct = StatusCompute.NA,
                         CanComputeCubicMeterSurfaceForDrink = StatusCompute.NA,
+                        CanComputeCubicMeterForDrink = StatusCompute.NA,
                         Duplicate = false,
                     });
 
@@ -331,6 +336,7 @@ namespace NSOFunction
                         CanComputeCubicMeterPlumbingForService = StatusCompute.NA,
                         CanComputeCubicMeterPlumbingForProduct = StatusCompute.NA,
                         CanComputeCubicMeterPlumbingForDrink = StatusCompute.NA,
+                        CanComputeCubicMeterForDrink = StatusCompute.NA,
                         Duplicate = false,
                     });
 
@@ -514,6 +520,7 @@ namespace NSOFunction
                         CountCommunity = it.Sum(i => i.CountCommunity),
                         CountCommunityHasDisaster = it.Sum(i => i.CountCommunityHasDisaster),
                         Duplicate = false,
+                        CanComputeCubicMeterForDrink = StatusCompute.NA,
                     }).ToList();
 
                 dataProcessedList.ForEach(data =>
@@ -532,7 +539,7 @@ namespace NSOFunction
                             ? StatusCompute.True
                             : StatusCompute.NA;
 
-                    data.CubicMeterForDrink = data.CountPopulation == 0
+                    data.CubicMeterForDrink = data.CountPopulation > 0
                         ? (data.CubicMeterGroundWaterForDrink +
                         data.CubicMeterPlumbingForDrink +
                         data.CubicMeterSurfaceForDrink)
@@ -627,6 +634,7 @@ namespace NSOFunction
                 CanComputeCubicMeterSurfaceForService = StatusCompute.NA,
                 CanComputeCubicMeterSurfaceForProduct = StatusCompute.NA,
                 CanComputeCubicMeterSurfaceForDrink = StatusCompute.NA,
+                CanComputeCubicMeterForDrink = StatusCompute.NA,
                 Duplicate = false,
             };
         }
