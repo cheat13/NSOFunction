@@ -870,5 +870,50 @@ namespace NSOFunction.Models
         /// ข้อมูลตัวซ้ำ
         /// </summary>
         public bool Duplicate { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 26.ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล น้ำซื้อ)
+        /// </summary>
+        public bool AdjustedCubicMeterGroundWaterForAgriculture { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 27.ปริมาณการใช้น้ำบาดาลเพื่อการบริการ(น้ำบาดาล น้ำซื้อ)
+        /// </summary>
+        public bool AdjustedCubicMeterGroundWaterForService { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 28.ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม(น้ำบาดาล น้ำซื้อ)
+        /// </summary>
+        public bool AdjustedCubicMeterGroundWaterForProduct { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 29.ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล น้ำซื้อ)
+        /// </summary>
+        public bool AdjustedCubicMeterGroundWaterForDrink { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 34.ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// </summary>
+        public bool AdjustedCubicMeterSurfaceForAgriculture { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 35.ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// </summary>
+        public bool AdjustedCubicMeterSurfaceForService { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 36.ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// </summary>
+        public bool AdjustedCubicMeterSurfaceForProduct { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 37.ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// </summary>
+        public bool AdjustedCubicMeterSurfaceForDrink { get; set; }
+
+        /// <summary>
+        /// ค่าปรับแต่ง 38.ปริมาณน้ำบาดาลที่พัฒนามาใช้ (ปริมาณน้ำจากรายการ 26-29)
+        /// </summary>
+        public bool AdjustedCubicMeterGroundWaterForUse { get; set; }
     }
 }
