@@ -532,11 +532,12 @@ namespace NSOFunction
                             ? StatusCompute.True
                             : StatusCompute.NA;
 
-                    data.CubicMeterForDrink =
-                        (data.CubicMeterGroundWaterForDrink +
+                    data.CubicMeterForDrink = data.CountPopulation == 0
+                        ? (data.CubicMeterGroundWaterForDrink +
                         data.CubicMeterPlumbingForDrink +
                         data.CubicMeterSurfaceForDrink)
-                        / data.CountPopulation;
+                        / data.CountPopulation
+                        : 0;
                 });
 
                 return dataProcessedList;
