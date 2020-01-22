@@ -151,12 +151,12 @@ namespace NSOFunction
 
         public int IsAllHouseHoldCountryside(string EA, HouseHoldSample unit)
         {
-            return Water.IsAllHouseHoldCountryside(EA, unit?.IsAgriculture);
+            return Water.IsAllHouseHoldCountryside(EA, unit?.IsHouseHold);
         }
 
         public int IsAllHouseHoldDistrict(string EA, HouseHoldSample unit)
         {
-            return Water.IsAllHouseHoldDistrict(EA, unit?.IsAgriculture);
+            return Water.IsAllHouseHoldDistrict(EA, unit?.IsHouseHold);
         }
 
         public int IsAllFactorial(HouseHoldSample unit)
