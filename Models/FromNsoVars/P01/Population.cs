@@ -16,9 +16,24 @@ namespace NSOWater.HotMigration.Models
         public bool? Skip { get; set; }
         
         /// <summary>
-        /// จำนวนคน
+        /// จำนวนผู้อยู่อาศัย
         /// </summary>
         public int? PersonCount { get; set; }
+        
+        /// <summary>
+        /// จำนวนทั้งหมด
+        /// </summary>
+        public int? AllPersonCount { get; set; }
+        
+        /// <summary>
+        /// ชาย
+        /// </summary>
+        public int? MalePerson { get; set; }
+        
+        /// <summary>
+        /// หญิง
+        /// </summary>
+        public int? FemalePerson { get; set; }
 
         /// <summary>
         /// ข้อมูลบุคคล
