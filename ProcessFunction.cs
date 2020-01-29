@@ -519,6 +519,10 @@ namespace NSOFunction
                         CubicMeterGroundWaterForUse = it.Sum(i => i.CubicMeterGroundWaterForUse),
                         CountCommunity = it.Sum(i => i.CountCommunity),
                         CountCommunityHasDisaster = it.Sum(i => i.CountCommunityHasDisaster),
+                        IsAllHouseHoldCountryside = it.Sum(i => i.IsAllHouseHoldCountryside),
+                        IsAllHouseHoldDistrict = it.Sum(i => i.IsAllHouseHoldDistrict),
+                        IsAllFactorial = it.Sum(i => i.IsAllFactorial),
+                        IsAllCommercial = it.Sum(i => i.IsAllCommercial),
                         Duplicate = false,
                         CanComputeCubicMeterForDrink = StatusCompute.NA,
                     }).ToList();
