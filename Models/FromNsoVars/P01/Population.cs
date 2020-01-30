@@ -14,26 +14,26 @@ namespace NSOWater.HotMigration.Models
         /// ครัวเรือนนี้เป็นครัวเรือนสถาบันหรือไม่
         /// </summary>
         public bool? Skip { get; set; }
-        
+
         /// <summary>
         /// จำนวนผู้อยู่อาศัย
         /// </summary>
         public int? PersonCount { get; set; }
-        
+
         /// <summary>
         /// จำนวนทั้งหมด
         /// </summary>
-        public int? AllPersonCount { get; set; }
-        
+        public double? AllPersonCount { get; set; }
+
         /// <summary>
         /// ชาย
         /// </summary>
-        public int? MalePerson { get; set; }
-        
+        public double? MalePerson { get; set; }
+
         /// <summary>
         /// หญิง
         /// </summary>
-        public int? FemalePerson { get; set; }
+        public double? FemalePerson { get; set; }
 
         /// <summary>
         /// ข้อมูลบุคคล
