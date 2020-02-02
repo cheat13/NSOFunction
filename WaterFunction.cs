@@ -636,7 +636,7 @@ namespace NSOFunction
         public int IndustryHasWasteWaterTreatment(bool? IsFactorial, Factorial Factory)
         {
             return IsFactorial == true &&
-                (Factory?.WorkersCount ?? 0) >= 7 || (Factory?.HeavyMachine == true) &&
+                ((Factory?.WorkersCount ?? 0) >= 7 || (Factory?.HeavyMachine == true)) &&
                 Factory?.HasWasteWaterFromProduction == true
                 ? 1 : 0;
         }
