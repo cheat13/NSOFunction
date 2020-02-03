@@ -915,5 +915,20 @@ namespace NSOFunction.Models
         /// ค่าปรับแต่ง 38.ปริมาณน้ำบาดาลที่พัฒนามาใช้ (ปริมาณน้ำจากรายการ 26-29)
         /// </summary>
         public bool AdjustedCubicMeterGroundWaterForUse { get; set; }
+
+        /// <summary>
+        /// ครัวเรือนนี้เป็นครัวเรือนสถาบันหรือไม่
+        /// </summary>
+        public int? Skip { get; set; }
+
+        /// <summary>
+        /// จำนวนประชากรทั้งหมดจาก Residential
+        /// </summary>
+        public double ResidentialPersonCount { get; set; }
+
+        /// <summary>
+        /// จำนวนประชากรทั้งหมดจาก Population
+        /// </summary>
+        public double PopulationPersonCount { get; set; }
     }
 }

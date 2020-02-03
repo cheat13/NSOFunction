@@ -116,8 +116,11 @@ namespace NSOFunction
             if (count == 3000000000) count = 3;
             return new PopulationCount
             {
-                countPopulation = IsHouseHold == true ? (int)count : 0,
-                countWorkingAge = IsHouseHold == true ? Residence?.WorkingAge ?? 0 : 0,
+                CountPopulation = IsHouseHold == true ? (int)count : 0,
+                CountWorkingAge = IsHouseHold == true ? Residence?.WorkingAge ?? 0 : 0,
+                Skip = Population?.Skip,
+                ResidentialPersonCount = Residence?.MemberCount ?? 0,
+                PopulationPersonCount = Population?.AllPersonCount ?? 0,
             };
         }
 

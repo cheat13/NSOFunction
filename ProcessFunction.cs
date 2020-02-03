@@ -130,8 +130,8 @@ namespace NSOFunction
                     IsHouseHoldHasPlumbingCountryside = isHouseHoldGoodPlumbing.IsHouseHoldHasPlumbingCountryside,
                     IsFactorialWaterQuality = isFactorialWaterQuality,
                     IsCommercialWaterQuality = isCommercialWaterQuality,
-                    CountPopulation = countPopulation.countPopulation,
-                    CountWorkingAge = countPopulation.countWorkingAge,
+                    CountPopulation = countPopulation.CountPopulation,
+                    CountWorkingAge = countPopulation.CountWorkingAge,
                     IsFactorial = isFactorial,
                     IsFactorialWaterTreatment = isFactorialWaterTreatment,
                     AvgWaterHeightCm = disasterous.AvgWaterHeightCm,
@@ -161,6 +161,9 @@ namespace NSOFunction
                     IsAllCommercial = isAllCommercial,
                     Duplicate = false,
                     CanComputeCubicMeterForDrink = StatusCompute.NA,
+                    Skip = countPopulation.Skip,
+                    ResidentialPersonCount = countPopulation.ResidentialPersonCount,
+                    PopulationPersonCount = countPopulation.PopulationPersonCount,
                 };
 
                 var countGroundWaterHouseHold = baseFn.CountGroundWaterHouseHold(ea, unt);
@@ -525,6 +528,9 @@ namespace NSOFunction
                         IsAllCommercial = it.Sum(i => i.IsAllCommercial),
                         Duplicate = false,
                         CanComputeCubicMeterForDrink = StatusCompute.NA,
+                        Skip = it.Sum(i => i.Skip),
+                        ResidentialPersonCount = it.Sum(i => i.ResidentialPersonCount),
+                        PopulationPersonCount = it.Sum(i => i.PopulationPersonCount),
                     }).ToList();
 
                 dataProcessedList.ForEach(data =>
