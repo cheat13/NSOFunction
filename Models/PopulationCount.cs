@@ -17,7 +17,7 @@ namespace NSOFunction.Models
         /// <summary>
         /// ครัวเรือนนี้เป็นครัวเรือนสถาบันหรือไม่
         /// </summary>
-        public int? Skip { get; set; }
+        public string Skip { get; set; }
 
         /// <summary>
         /// จำนวนประชากรทั้งหมดจาก Residential

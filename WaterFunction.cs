@@ -114,11 +114,16 @@ namespace NSOFunction
         {
             var count = Population?.AllPersonCount ?? Residence?.MemberCount ?? 0;
             if (count == 3000000000) count = 3;
+            var skip = Population?.Skip == "true"
+                ? "1"
+                : Population?.Skip == "false"
+                    ? "2"
+                    : Population?.Skip;
             return new PopulationCount
             {
                 CountPopulation = IsHouseHold == true ? (int)count : 0,
                 CountWorkingAge = IsHouseHold == true ? Residence?.WorkingAge ?? 0 : 0,
-                Skip = Population?.Skip,
+                Skip = skip,
                 ResidentialPersonCount = Residence?.MemberCount ?? 0,
                 PopulationPersonCount = Population?.AllPersonCount ?? 0,
             };

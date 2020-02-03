@@ -528,7 +528,7 @@ namespace NSOFunction
                         IsAllCommercial = it.Sum(i => i.IsAllCommercial),
                         Duplicate = false,
                         CanComputeCubicMeterForDrink = StatusCompute.NA,
-                        Skip = it.Sum(i => i.Skip),
+                        Skip = it.First().Skip,
                         ResidentialPersonCount = it.Sum(i => i.ResidentialPersonCount),
                         PopulationPersonCount = it.Sum(i => i.PopulationPersonCount),
                     }).ToList();

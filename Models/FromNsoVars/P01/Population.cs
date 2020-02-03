@@ -13,7 +13,7 @@ namespace NSOWater.HotMigration.Models
         /// <summary>
         /// ครัวเรือนนี้เป็นครัวเรือนสถาบันหรือไม่
         /// </summary>
-        public int? Skip { get; set; }
+        public string Skip { get; set; }
 
         /// <summary>
         /// จำนวนผู้อยู่อาศัย
