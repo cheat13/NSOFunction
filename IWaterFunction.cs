@@ -108,6 +108,46 @@ public interface IWaterFunction
     int PeopleInFloodedArea(bool? IsHouseHold, bool? Flooded, Population Population, Residential Residence); // ???
 
     /// <summary>
+    /// 26.1 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร-น้ำบาดาล 
+    /// </summary>
+    List<CubicMeterGroundWaterModel> CubicMeterGroundWaterForAgriculture();
+
+    /// <summary>
+    /// 26.2 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร- น้ำซื้อ
+    /// </summary>
+    List<CubicMeterGroundWaterModel> CubicMeterGroundWaterForAgricultureBuying();
+
+    /// <summary>
+    /// 27.1 ปริมาณการใช้น้ำบาดาลเพื่อการบริการ-น้ำบาดาล 
+    /// </summary>
+    List<CubicMeterGroundWaterModel> CubicMeterGroundWaterForService();
+
+    /// <summary>
+    /// 27.2 ปริมาณการใช้น้ำบาดาลเพื่อการบริการ-น้ำซื้อ
+    /// </summary>
+    List<CubicMeterGroundWaterModel> CubicMeterGroundWaterForServiceBuying();
+
+    /// <summary>
+    /// 28.1 ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม-น้ำบาดาล  
+    /// </summary>
+    List<CubicMeterGroundWaterModel> CubicMeterGroundWaterForProduct();
+
+    /// <summary>
+    /// 28.2 ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม--น้ำซื้อ
+    /// </summary>
+    List<CubicMeterGroundWaterModel> CubicMeterGroundWaterForProductBuying();
+
+    /// <summary>
+    /// 29.1 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค-น้ำบาดาล 
+    /// </summary>
+    List<CubicMeterGroundWaterModel> CubicMeterGroundWaterForDrink();
+
+    /// <summary>
+    /// 29.2 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค- น้ำซื้อ
+    /// </summary>
+    List<CubicMeterGroundWaterModel> CubicMeterGroundWaterForDrinkBuying();
+
+    /// <summary>
     /// 26-29,38 ปริมาณการใช้น้ำบาดาล
     /// </summary>
     List<CubicMeterGroundWaterModel> CubicMeterGroundWater(string ea, bool? isAgriculture, bool? isCommercial, bool? isFactorial, bool? isHouseHold, Agriculture agriculture, Commercial commercial, Factorial factorial, Residential residential, GroundWater groundWater, Buying buying, BuildingType? buildingType);
@@ -118,9 +158,149 @@ public interface IWaterFunction
     CubicMeterGroundWaterCommunity CubicMeterGroundWater(ManagementForFarming managementForFarming, CommunityWaterManagement communityWaterManagement);
 
     /// <summary>
+    /// 30.1 ปริมาณการใช้น้ำประปาเพื่อการเกษตร-ประปานครหลวง
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingMWAForAgriculture();
+
+    /// <summary>
+    /// 30.2 ปริมาณการใช้น้ำประปาเพื่อการเกษตร-ประปาส่วนภูมิภาค
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingPWAForAgriculture();
+
+    /// <summary>
+    /// 30.3 ปริมาณการใช้น้ำประปาเพื่อการเกษตร-ประปาอื่นๆ
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingOtherForAgriculture();
+
+    /// <summary>
+    /// 31.1 ปริมาณการใช้น้ำประปาเพื่อการบริการ-ประปานครหลวง
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingMWAForService();
+
+    /// <summary>
+    /// 31.2 ปริมาณการใช้น้ำประปาเพื่อการบริการ-ประปาส่วนภูมิภาค
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingPWAForService();
+
+    /// <summary>
+    /// 31.3 ปริมาณการใช้น้ำประปาเพื่อการบริการ-ประปาอื่นๆ
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingOtherForService();
+
+    // <summary>
+    /// 32.1 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม-ประปานครหลวง
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingMWAForProduct();
+
+    /// <summary>
+    /// 32.2 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม-ประปาส่วนภูมิภาค
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingPWAForProduct();
+
+    /// <summary>
+    /// 32.3 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม-ประปาอื่นๆ
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingOtherForProduct();
+
+    // <summary>
+    /// 33.1 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค-ประปานครหลวง
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingMWAForDrink();
+
+    /// <summary>
+    /// 33.2 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค-ประปาส่วนภูมิภาค 
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingPWAForDrink();
+
+    /// <summary>
+    /// 33.3 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค-ประปาอื่นๆ
+    /// </summary>
+    CubicMeterPlumbing CubicMeterPlumbingDoingOtherForDrink();
+
+    /// <summary>
     /// 30-33 ปริมาณการใช้น้ำประปา
     /// </summary>
     CubicMeterPlumbing CubicMeterPlumbing(bool? isAgriculture, bool? isCommercial, bool? isFactorial, bool? isHouseHold, Agriculture agriculture, Commercial commercial, Factorial factorial, Residential residential, Plumbing plumbing, BuildingType? buildingType, List<DetailOrgWaterSupply> waterServices);
+
+    // <summary>
+    /// 34.1 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร -สระน้ำ 
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfacePoolForAgriculture();
+
+    /// <summary>
+    /// 34.2 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร - แม่น้ำ 
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceRiverForAgriculture();
+
+    /// <summary>
+    /// 34.3 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร -ชลประทาน 
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceIrrigationForAgriculture();
+
+    /// <summary>
+    /// 34.4 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร - น้ำฝนกักเก็บ
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceRainForAgriculture();
+
+    // <summary>
+    /// 35.1 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ-สระน้ำ
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfacePoolForService();
+
+    /// <summary>
+    /// 35.2 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ - แม่น้ำ 
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceRiverForService();
+
+    /// <summary>
+    /// 35.3 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ -ชลประทาน 
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceIrrigationForService();
+
+    /// <summary>
+    /// 35.4 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ - น้ำฝนกักเก็บ
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceRainForService();
+
+    // <summary>
+    /// 36.1 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม -สระน้ำ 
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfacePoolForProduct();
+
+    /// <summary>
+    /// 36.2 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม - แม่น้ำ  
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceRiverForProduct();
+
+    /// <summary>
+    /// 36.3 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม  -ชลประทาน 
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceIrrigationForProduct();
+
+    /// <summary>
+    /// 36.4 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม - น้ำฝนกักเก็บ
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceRainForProduct();
+
+    // <summary>
+    /// 37.1 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค -สระน้ำ 
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfacePoolForDrink();
+
+    /// <summary>
+    /// 37.2 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค  - แม่น้ำ 
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceRiverForDrink();
+
+    /// <summary>
+    /// 37.3 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค  -ชลประทาน
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceIrrigationForDrink();
+
+    /// <summary>
+    /// 37.4 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค  - น้ำฝนกักเก็บ
+    /// </summary>
+    List<CubicMeterSurface> CubicMeterSurfaceRainForDrink();
 
     /// <summary>
     /// 34-37 ปริมาณการใช้น้ำผิวดิน
