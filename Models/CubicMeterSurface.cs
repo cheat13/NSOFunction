@@ -253,22 +253,102 @@ namespace NSOFunction.Models
         public StatusCompute CanComputeCubicMeterSurfaceForDrink { get; set; }
 
         /// <summary>
-        /// 34.ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ) สน.1
+        /// 34.1 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForAgriculturePool { get; set; }
+
+        /// <summary>
+        /// 34.2 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (แม่น้ำ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForAgricultureRiver { get; set; }
+
+        /// <summary>
+        /// 34.3 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (ชลประทาน) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForAgricultureIrrigation { get; set; }
+
+        /// <summary>
+        /// 34.4 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (น้ำฝนกักเก็บ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForAgricultureRain { get; set; }
+
+        /// <summary>
+        /// 34.5 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ) สน.1
         /// </summary>
         public double CubicMeterSurfaceForAgriculture { get; set; }
 
         /// <summary>
-        /// 35.ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// 35.1 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (สระน้ำ)
+        /// </summary>
+        public double CubicMeterSurfaceForServicePool { get; set; }
+
+        /// <summary>
+        /// 35.2 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (แม่น้ำ)
+        /// </summary>
+        public double CubicMeterSurfaceForServiceRiver { get; set; }
+
+        /// <summary>
+        /// 35.3 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (ชลประทาน)
+        /// </summary>
+        public double CubicMeterSurfaceForServiceIrrigation { get; set; }
+
+        /// <summary>
+        /// 35.4 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (น้ำฝนกักเก็บ)
+        /// </summary>
+        public double CubicMeterSurfaceForServiceRain { get; set; }
+
+        /// <summary>
+        /// 35.5 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
         /// </summary>
         public double CubicMeterSurfaceForService { get; set; }
 
         /// <summary>
-        /// 36.ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// 36.1 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (สระน้ำ)
+        /// </summary>
+        public double CubicMeterSurfaceForProductPool { get; set; }
+
+        /// <summary>
+        /// 36.2 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (แม่น้ำ)
+        /// </summary>
+        public double CubicMeterSurfaceForProductRiver { get; set; }
+
+        /// <summary>
+        /// 36.3 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (ชลประทาน)
+        /// </summary>
+        public double CubicMeterSurfaceForProductIrrigation { get; set; }
+
+        /// <summary>
+        /// 36.4 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (น้ำฝนกักเก็บ)
+        /// </summary>
+        public double CubicMeterSurfaceForProductRain { get; set; }
+
+        /// <summary>
+        /// 36.5 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
         /// </summary>
         public double CubicMeterSurfaceForProduct { get; set; }
 
         /// <summary>
-        /// 37.ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ) สน.1
+        /// 37.1 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForDrinkPool { get; set; }
+
+        /// <summary>
+        /// 37.2 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (แม่น้ำ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForDrinkRiver { get; set; }
+
+        /// <summary>
+        /// 37.3 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (ชลประทาน) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForDrinkIrrigation { get; set; }
+
+        /// <summary>
+        /// 37.4 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (น้ำฝนกักเก็บ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForDrinkRain { get; set; }
+
+        /// <summary>
+        /// 37.5 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ) สน.1
         /// </summary>
         public double CubicMeterSurfaceForDrink { get; set; }
 

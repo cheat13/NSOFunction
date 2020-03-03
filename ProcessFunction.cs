@@ -161,9 +161,7 @@ namespace NSOFunction
                     IsAllCommercial = isAllCommercial,
                     Duplicate = false,
                     CanComputeCubicMeterForDrink = StatusCompute.NA,
-                    Skip = countPopulation.Skip,
-                    ResidentialPersonCount = countPopulation.ResidentialPersonCount,
-                    PopulationPersonCount = countPopulation.PopulationPersonCount,
+                    Road = bld.Road,
                 };
 
                 var countGroundWaterHouseHold = baseFn.CountGroundWaterHouseHold(ea, unt);
@@ -528,9 +526,7 @@ namespace NSOFunction
                         IsAllCommercial = it.Sum(i => i.IsAllCommercial),
                         Duplicate = false,
                         CanComputeCubicMeterForDrink = StatusCompute.NA,
-                        Skip = it.First().Skip,
-                        ResidentialPersonCount = it.Sum(i => i.ResidentialPersonCount),
-                        PopulationPersonCount = it.Sum(i => i.PopulationPersonCount),
+                        Road = it.First().Road,
                     }).ToList();
 
                 dataProcessedList.ForEach(data =>

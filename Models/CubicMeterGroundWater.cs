@@ -142,22 +142,62 @@ namespace NSOFunction.Models
         public StatusCompute CanComputeCubicMeterGroundWaterForUse { get; set; }
 
         /// <summary>
-        /// 26.ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล น้ำซื้อ) สน.1
+        /// 26.1 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล) สน.1
+        /// </summary>
+        public double CubicMeterGroundWaterForAgricultureGroundWater { get; set; }
+
+        /// <summary>
+        /// 26.2 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำซื้อ) สน.1
+        /// </summary>
+        public double CubicMeterGroundWaterForAgricultureBuying { get; set; }
+
+        /// <summary>
+        /// 26.3 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล น้ำซื้อ) สน.1
         /// </summary>
         public double CubicMeterGroundWaterForAgriculture { get; set; }
 
         /// <summary>
-        /// 27.ปริมาณการใช้น้ำบาดาลเพื่อการบริการ(น้ำบาดาล น้ำซื้อ)
+        /// 27.1 ปริมาณการใช้น้ำบาดาลเพื่อการบริการ(น้ำบาดาล)
+        /// </summary>
+        public double CubicMeterGroundWaterForServiceGroundWater { get; set; }
+
+        /// <summary>
+        /// 27.2 ปริมาณการใช้น้ำบาดาลเพื่อการบริการ(น้ำซื้อ)
+        /// </summary>
+        public double CubicMeterGroundWaterForServiceBuying { get; set; }
+
+        /// <summary>
+        /// 27.3 ปริมาณการใช้น้ำบาดาลเพื่อการบริการ(น้ำบาดาล น้ำซื้อ)
         /// </summary>
         public double CubicMeterGroundWaterForService { get; set; }
 
         /// <summary>
-        /// 28.ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม(น้ำบาดาล น้ำซื้อ)
+        /// 28.1 ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม(น้ำบาดาล)
+        /// </summary>
+        public double CubicMeterGroundWaterForProductGroundWater { get; set; }
+
+        /// <summary>
+        /// 28.2 ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม(น้ำซื้อ)
+        /// </summary>
+        public double CubicMeterGroundWaterForProductBuying { get; set; }
+
+        /// <summary>
+        /// 28.3 ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม(น้ำบาดาล น้ำซื้อ)
         /// </summary>
         public double CubicMeterGroundWaterForProduct { get; set; }
 
         /// <summary>
-        /// 29.ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล น้ำซื้อ) สน.1
+        /// 29.1 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล) สน.1
+        /// </summary>
+        public double CubicMeterGroundWaterForDrinkGroundWater { get; set; }
+
+        /// <summary>
+        /// 29.2 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำซื้อ) สน.1
+        /// </summary>
+        public double CubicMeterGroundWaterForDrinkBuying { get; set; }
+
+        /// <summary>
+        /// 29.3 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล น้ำซื้อ) สน.1
         /// </summary>
         public double CubicMeterGroundWaterForDrink { get; set; }
 

@@ -917,18 +917,8 @@ namespace NSOFunction.Models
         public bool AdjustedCubicMeterGroundWaterForUse { get; set; }
 
         /// <summary>
-        /// ครัวเรือนนี้เป็นครัวเรือนสถาบันหรือไม่
+        /// ชื่อถนนลำน้ำหรือละแวกบ้าน
         /// </summary>
-        public string Skip { get; set; }
-
-        /// <summary>
-        /// จำนวนประชากรทั้งหมดจาก Residential
-        /// </summary>
-        public double ResidentialPersonCount { get; set; }
-
-        /// <summary>
-        /// จำนวนประชากรทั้งหมดจาก Population
-        /// </summary>
-        public double PopulationPersonCount { get; set; }
+        public string Road { get; set; }
     }
 }

@@ -245,22 +245,82 @@ namespace NSOFunction.Models
         public StatusCompute CanComputeCubicMeterPlumbingForDrink { get; set; }
 
         /// <summary>
-        /// 30.ปริมาณการใช้น้ำประปาเพื่อการเกษตร
+        /// 30.1 ปริมาณการใช้น้ำประปาเพื่อการเกษตร-ประปานครหลวง
+        /// </summary>
+        public double CubicMeterPlumbingForAgricultureMWA { get; set; }
+
+        /// <summary>
+        /// 30.2 ปริมาณการใช้น้ำประปาเพื่อการเกษตร-ประปาส่วนภูมิภาค
+        /// </summary>
+        public double CubicMeterPlumbingForAgriculturePWA { get; set; }
+
+        /// <summary>
+        /// 30.3 ปริมาณการใช้น้ำประปาเพื่อการเกษตร-ประปาอื่นๆ
+        /// </summary>
+        public double CubicMeterPlumbingForAgricultureOther { get; set; }
+
+        /// <summary>
+        /// 30.4 ปริมาณการใช้น้ำประปาเพื่อการเกษตร
         /// </summary>
         public double CubicMeterPlumbingForAgriculture { get; set; }
 
         /// <summary>
-        /// 31.ปริมาณการใช้น้ำประปาเพื่อการบริการ
+        /// 31.1 ปริมาณการใช้น้ำประปาเพื่อการบริการ-ประปานครหลวง
+        /// </summary>
+        public double CubicMeterPlumbingForServiceMWA { get; set; }
+
+        /// <summary>
+        /// 31.2 ปริมาณการใช้น้ำประปาเพื่อการบริการ-ประปาส่วนภูมิภาค
+        /// </summary>
+        public double CubicMeterPlumbingForServicePWA { get; set; }
+
+        /// <summary>
+        /// 31.3 ปริมาณการใช้น้ำประปาเพื่อการบริการ-ประปาอื่นๆ
+        /// </summary>
+        public double CubicMeterPlumbingForServiceOther { get; set; }
+
+        /// <summary>
+        /// 31.4 ปริมาณการใช้น้ำประปาเพื่อการบริการ
         /// </summary>
         public double CubicMeterPlumbingForService { get; set; }
 
         /// <summary>
-        /// 32.ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม
+        /// 32.1 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม-ประปานครหลวง
+        /// </summary>
+        public double CubicMeterPlumbingForProductMWA { get; set; }
+
+        /// <summary>
+        /// 32.2 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม-ประปาส่วนภูมิภาค
+        /// </summary>
+        public double CubicMeterPlumbingForProductPWA { get; set; }
+
+        /// <summary>
+        /// 32.3 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม-ประปาอื่นๆ
+        /// </summary>
+        public double CubicMeterPlumbingForProductOther { get; set; }
+
+        /// <summary>
+        /// 32.4 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม
         /// </summary>
         public double CubicMeterPlumbingForProduct { get; set; }
 
         /// <summary>
-        /// 33.ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค 
+        /// 33.1 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค-ประปานครหลวง
+        /// </summary>
+        public double CubicMeterPlumbingForDrinkMWA { get; set; }
+
+        /// <summary>
+        /// 33.2 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค-ประปาส่วนภูมิภาค
+        /// </summary>
+        public double CubicMeterPlumbingForDrinkPWA { get; set; }
+
+        /// <summary>
+        /// 33.3 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค-ประปาอื่นๆ
+        /// </summary>
+        public double CubicMeterPlumbingForDrinkOther { get; set; }
+
+        /// <summary>
+        /// 33.4 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค 
         /// </summary>
         public double CubicMeterPlumbingForDrink { get; set; }
     }
