@@ -767,62 +767,242 @@ namespace NSOFunction.Models
         public int PeopleInFloodedArea { get; set; }
 
         /// <summary>
-        /// 26.ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล น้ำซื้อ)
+        /// 26.1 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล) สน.1
+        /// </summary>
+        public double CubicMeterGroundWaterForAgricultureGroundWater { get; set; }
+
+        /// <summary>
+        /// 26.2 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำซื้อ) สน.1
+        /// </summary>
+        public double CubicMeterGroundWaterForAgricultureBuying { get; set; }
+
+        /// <summary>
+        /// 26.3 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล น้ำซื้อ) สน.1
         /// </summary>
         public double CubicMeterGroundWaterForAgriculture { get; set; }
 
         /// <summary>
-        /// 27.ปริมาณการใช้น้ำบาดาลเพื่อการบริการ(น้ำบาดาล น้ำซื้อ)
+        /// 27.1 ปริมาณการใช้น้ำบาดาลเพื่อการบริการ(น้ำบาดาล)
+        /// </summary>
+        public double CubicMeterGroundWaterForServiceGroundWater { get; set; }
+
+        /// <summary>
+        /// 27.2 ปริมาณการใช้น้ำบาดาลเพื่อการบริการ(น้ำซื้อ)
+        /// </summary>
+        public double CubicMeterGroundWaterForServiceBuying { get; set; }
+
+        /// <summary>
+        /// 27.3 ปริมาณการใช้น้ำบาดาลเพื่อการบริการ(น้ำบาดาล น้ำซื้อ)
         /// </summary>
         public double CubicMeterGroundWaterForService { get; set; }
 
         /// <summary>
-        /// 28.ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม(น้ำบาดาล น้ำซื้อ)
+        /// 28.1 ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม(น้ำบาดาล)
+        /// </summary>
+        public double CubicMeterGroundWaterForProductGroundWater { get; set; }
+
+        /// <summary>
+        /// 28.2 ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม(น้ำซื้อ)
+        /// </summary>
+        public double CubicMeterGroundWaterForProductBuying { get; set; }
+
+        /// <summary>
+        /// 28.3 ปริมาณการใช้น้ำบาดาลเพื่อการอุตสาหกรรม(น้ำบาดาล น้ำซื้อ)
         /// </summary>
         public double CubicMeterGroundWaterForProduct { get; set; }
 
         /// <summary>
-        /// 29.ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล น้ำซื้อ)
+        /// 29.1 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล) สน.1
+        /// </summary>
+        public double CubicMeterGroundWaterForDrinkGroundWater { get; set; }
+
+        /// <summary>
+        /// 29.2 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำซื้อ) สน.1
+        /// </summary>
+        public double CubicMeterGroundWaterForDrinkBuying { get; set; }
+
+        /// <summary>
+        /// 29.3 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล น้ำซื้อ) สน.1
         /// </summary>
         public double CubicMeterGroundWaterForDrink { get; set; }
 
         /// <summary>
-        /// 30.ปริมาณการใช้น้ำประปาเพื่อการเกษตร
+        /// 30.1 ปริมาณการใช้น้ำประปาเพื่อการเกษตร-ประปานครหลวง
+        /// </summary>
+        public double CubicMeterPlumbingForAgricultureMWA { get; set; }
+
+        /// <summary>
+        /// 30.2 ปริมาณการใช้น้ำประปาเพื่อการเกษตร-ประปาส่วนภูมิภาค
+        /// </summary>
+        public double CubicMeterPlumbingForAgriculturePWA { get; set; }
+
+        /// <summary>
+        /// 30.3 ปริมาณการใช้น้ำประปาเพื่อการเกษตร-ประปาอื่นๆ
+        /// </summary>
+        public double CubicMeterPlumbingForAgricultureOther { get; set; }
+
+        /// <summary>
+        /// 30.4 ปริมาณการใช้น้ำประปาเพื่อการเกษตร
         /// </summary>
         public double CubicMeterPlumbingForAgriculture { get; set; }
 
         /// <summary>
-        /// 31.ปริมาณการใช้น้ำประปาเพื่อการบริการ
+        /// 31.1 ปริมาณการใช้น้ำประปาเพื่อการบริการ-ประปานครหลวง
+        /// </summary>
+        public double CubicMeterPlumbingForServiceMWA { get; set; }
+
+        /// <summary>
+        /// 31.2 ปริมาณการใช้น้ำประปาเพื่อการบริการ-ประปาส่วนภูมิภาค
+        /// </summary>
+        public double CubicMeterPlumbingForServicePWA { get; set; }
+
+        /// <summary>
+        /// 31.3 ปริมาณการใช้น้ำประปาเพื่อการบริการ-ประปาอื่นๆ
+        /// </summary>
+        public double CubicMeterPlumbingForServiceOther { get; set; }
+
+        /// <summary>
+        /// 31.4 ปริมาณการใช้น้ำประปาเพื่อการบริการ
         /// </summary>
         public double CubicMeterPlumbingForService { get; set; }
 
         /// <summary>
-        /// 32.ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม
+        /// 32.1 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม-ประปานครหลวง
+        /// </summary>
+        public double CubicMeterPlumbingForProductMWA { get; set; }
+
+        /// <summary>
+        /// 32.2 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม-ประปาส่วนภูมิภาค
+        /// </summary>
+        public double CubicMeterPlumbingForProductPWA { get; set; }
+
+        /// <summary>
+        /// 32.3 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม-ประปาอื่นๆ
+        /// </summary>
+        public double CubicMeterPlumbingForProductOther { get; set; }
+
+        /// <summary>
+        /// 32.4 ปริมาณการใช้น้ำประปาเพื่อการอุตสาหกรรม
         /// </summary>
         public double CubicMeterPlumbingForProduct { get; set; }
 
         /// <summary>
-        /// 33.ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค 
+        /// 33.1 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค-ประปานครหลวง
+        /// </summary>
+        public double CubicMeterPlumbingForDrinkMWA { get; set; }
+
+        /// <summary>
+        /// 33.2 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค-ประปาส่วนภูมิภาค
+        /// </summary>
+        public double CubicMeterPlumbingForDrinkPWA { get; set; }
+
+        /// <summary>
+        /// 33.3 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค-ประปาอื่นๆ
+        /// </summary>
+        public double CubicMeterPlumbingForDrinkOther { get; set; }
+
+        /// <summary>
+        /// 33.4 ปริมาณการใช้น้ำประปาเพื่อการอุปโภคบริโภค 
         /// </summary>
         public double CubicMeterPlumbingForDrink { get; set; }
 
         /// <summary>
-        /// 34.ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// 34.1 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForAgriculturePool { get; set; }
+
+        /// <summary>
+        /// 34.2 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (แม่น้ำ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForAgricultureRiver { get; set; }
+
+        /// <summary>
+        /// 34.3 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (ชลประทาน) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForAgricultureIrrigation { get; set; }
+
+        /// <summary>
+        /// 34.4 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (น้ำฝนกักเก็บ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForAgricultureRain { get; set; }
+
+        /// <summary>
+        /// 34.5 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ) สน.1
         /// </summary>
         public double CubicMeterSurfaceForAgriculture { get; set; }
 
         /// <summary>
-        /// 35.ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// 35.1 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (สระน้ำ)
+        /// </summary>
+        public double CubicMeterSurfaceForServicePool { get; set; }
+
+        /// <summary>
+        /// 35.2 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (แม่น้ำ)
+        /// </summary>
+        public double CubicMeterSurfaceForServiceRiver { get; set; }
+
+        /// <summary>
+        /// 35.3 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (ชลประทาน)
+        /// </summary>
+        public double CubicMeterSurfaceForServiceIrrigation { get; set; }
+
+        /// <summary>
+        /// 35.4 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (น้ำฝนกักเก็บ)
+        /// </summary>
+        public double CubicMeterSurfaceForServiceRain { get; set; }
+
+        /// <summary>
+        /// 35.5 ปริมาณการใช้น้ำผิวดินเพื่อการบริการ (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
         /// </summary>
         public double CubicMeterSurfaceForService { get; set; }
 
         /// <summary>
-        /// 36.ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// 36.1 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (สระน้ำ)
+        /// </summary>
+        public double CubicMeterSurfaceForProductPool { get; set; }
+
+        /// <summary>
+        /// 36.2 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (แม่น้ำ)
+        /// </summary>
+        public double CubicMeterSurfaceForProductRiver { get; set; }
+
+        /// <summary>
+        /// 36.3 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (ชลประทาน)
+        /// </summary>
+        public double CubicMeterSurfaceForProductIrrigation { get; set; }
+
+        /// <summary>
+        /// 36.4 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (น้ำฝนกักเก็บ)
+        /// </summary>
+        public double CubicMeterSurfaceForProductRain { get; set; }
+
+        /// <summary>
+        /// 36.5 ปริมาณการใช้น้ำผิวดินเพื่อการอุตสาหกรรม (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
         /// </summary>
         public double CubicMeterSurfaceForProduct { get; set; }
 
         /// <summary>
-        /// 37.ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
+        /// 37.1 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForDrinkPool { get; set; }
+
+        /// <summary>
+        /// 37.2 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (แม่น้ำ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForDrinkRiver { get; set; }
+
+        /// <summary>
+        /// 37.3 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (ชลประทาน) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForDrinkIrrigation { get; set; }
+
+        /// <summary>
+        /// 37.4 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (น้ำฝนกักเก็บ) สน.1
+        /// </summary>
+        public double CubicMeterSurfaceForDrinkRain { get; set; }
+
+        /// <summary>
+        /// 37.5 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ) สน.1
         /// </summary>
         public double CubicMeterSurfaceForDrink { get; set; }
 
