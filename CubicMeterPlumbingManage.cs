@@ -40,24 +40,25 @@ namespace NSOFunction
         {
             this.character = character;
 
-            var cubicMeterMWA = CubicMeter(Plumbing?.MWA, "M");
-            var cubicMeterPWA = CubicMeter(Plumbing?.PWA, "P");
-            var cubicMeterOther = CubicMeter(Plumbing?.Other, "O");
-
             var waterActivityMWA = WaterActivity(Plumbing?.WaterActivityMWA);
             var waterActivityPWA = WaterActivity(Plumbing?.WaterActivityPWA);
             var waterActivityOther = WaterActivity(Plumbing?.WaterActivityOther);
 
-            var cubicMeter = cubicMeterMWA * (waterActivityMWA / 100) +
-                cubicMeterPWA * (waterActivityPWA / 100) +
-                cubicMeterOther * (waterActivityOther / 100);
+            var cubicMeterMWA = CubicMeter(Plumbing?.MWA, "M") * (waterActivityMWA / 100);
+            var cubicMeterPWA = CubicMeter(Plumbing?.PWA, "P") * (waterActivityPWA / 100);
+            var cubicMeterOther = CubicMeter(Plumbing?.Other, "O") * (waterActivityOther / 100);
+
+            var cubicMeter = cubicMeterMWA + cubicMeterPWA + cubicMeterOther;
 
             if (cubicMeter < 1 && cubicMeter != 0) cubicMeter = 1;
 
             return new CubicMeterRequest
             {
                 CanCompute = isChecked ? CanCumputePlumbing : StatusCompute.NA,
-                CubicMeter = isChecked ? cubicMeter : 0
+                CubicMeterMWA = isChecked ? cubicMeterMWA : 0,
+                CubicMeterPWA = isChecked ? cubicMeterPWA : 0,
+                CubicMeterOther = isChecked ? cubicMeterOther : 0,
+                CubicMeter = isChecked ? cubicMeter : 0,
             };
         }
 

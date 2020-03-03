@@ -10,6 +10,21 @@ namespace NSOFunction.Models
         public StatusCompute CanCompute { get; set; }
 
         /// <summary>
+        /// ปริมาณน้ำ MWA
+        /// </summary>
+        public double CubicMeterMWA { get; set; }
+
+        /// <summary>
+        /// ปริมาณน้ำ PWA
+        /// </summary>
+        public double CubicMeterPWA { get; set; }
+
+        /// <summary>
+        /// ปริมาณน้ำ Other
+        /// </summary>
+        public double CubicMeterOther { get; set; }
+
+        /// <summary>
         /// ปริมาณน้ำ
         /// </summary>
         public double CubicMeter { get; set; }

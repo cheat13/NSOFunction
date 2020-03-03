@@ -252,7 +252,7 @@ namespace NSOFunction
             }
 
             var status = new StatusComputeManage();
-            
+
             if (cubicMeterLst.Any())
             {
                 var cubicMeterGroundWater = cubicMeterLst
@@ -432,13 +432,25 @@ namespace NSOFunction
                 MeterRentalFee = meterRentalFee,
                 PlumbingPrice = plumbingPrice,
                 CanComputeCubicMeterPlumbingForAgriculture = forAgriculture.CanCompute,
-                CubicMeterPlumbingForAgriculture = forAgriculture.CubicMeter,
                 CanComputeCubicMeterPlumbingForService = forService.CanCompute,
-                CubicMeterPlumbingForService = forService.CubicMeter,
                 CanComputeCubicMeterPlumbingForProduct = forProduct.CanCompute,
-                CubicMeterPlumbingForProduct = forProduct.CubicMeter,
                 CanComputeCubicMeterPlumbingForDrink = forDrink.CanCompute,
-                CubicMeterPlumbingForDrink = forDrink.CubicMeter
+                CubicMeterPlumbingForAgricultureMWA = forAgriculture.CubicMeterMWA,
+                CubicMeterPlumbingForAgriculturePWA = forAgriculture.CubicMeterPWA,
+                CubicMeterPlumbingForAgricultureOther = forAgriculture.CubicMeterOther,
+                CubicMeterPlumbingForAgriculture = forAgriculture.CubicMeter,
+                CubicMeterPlumbingForServiceMWA = forService.CubicMeterMWA,
+                CubicMeterPlumbingForServicePWA = forService.CubicMeterPWA,
+                CubicMeterPlumbingForServiceOther = forService.CubicMeterOther,
+                CubicMeterPlumbingForService = forService.CubicMeter,
+                CubicMeterPlumbingForProductMWA = forProduct.CubicMeterMWA,
+                CubicMeterPlumbingForProductPWA = forProduct.CubicMeterPWA,
+                CubicMeterPlumbingForProductOther = forProduct.CubicMeterOther,
+                CubicMeterPlumbingForProduct = forProduct.CubicMeter,
+                CubicMeterPlumbingForDrinkMWA = forDrink.CubicMeterMWA,
+                CubicMeterPlumbingForDrinkPWA = forDrink.CubicMeterPWA,
+                CubicMeterPlumbingForDrinkOther = forDrink.CubicMeterOther,
+                CubicMeterPlumbingForDrink = forDrink.CubicMeter,
             };
         }
 
