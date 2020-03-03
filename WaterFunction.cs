@@ -252,7 +252,7 @@ namespace NSOFunction
             }
 
             var status = new StatusComputeManage();
-
+            
             if (cubicMeterLst.Any())
             {
                 var cubicMeterGroundWater = cubicMeterLst
@@ -298,13 +298,21 @@ namespace NSOFunction
                         })
                     .ToList();
 
+                cubicMeterGroundWater.ForEach(it =>
+                {
+                    it.CubicMeterGroundWaterForAgricultureGroundWater = it.CubicMeterGroundWaterForAgriculture;
+                    it.CubicMeterGroundWaterForServiceGroundWater = it.CubicMeterGroundWaterForService;
+                    it.CubicMeterGroundWaterForProductGroundWater = it.CubicMeterGroundWaterForProduct;
+                    it.CubicMeterGroundWaterForDrinkGroundWater = it.CubicMeterGroundWaterForDrink;
+                });
+
                 var cubicMeterBuying = new CubicMeterGroundWaterModel
                 {
                     Area_Code = area_Code,
-                    CubicMeterBuyingForAgriculture = cmgManage.CalcBuying(WaterCharacter.IsAgriculture),
-                    CubicMeterBuyingForService = cmgManage.CalcBuying(WaterCharacter.IsCommercial),
-                    CubicMeterBuyingForProduct = cmgManage.CalcBuying(WaterCharacter.IsFactorial),
-                    CubicMeterBuyingForDrink = cmgManage.CalcBuying(WaterCharacter.IsHouseHold),
+                    CubicMeterGroundWaterForAgricultureBuying = cmgManage.CalcBuying(WaterCharacter.IsAgriculture),
+                    CubicMeterGroundWaterForServiceBuying = cmgManage.CalcBuying(WaterCharacter.IsCommercial),
+                    CubicMeterGroundWaterForProductBuying = cmgManage.CalcBuying(WaterCharacter.IsFactorial),
+                    CubicMeterGroundWaterForDrinkBuying = cmgManage.CalcBuying(WaterCharacter.IsHouseHold),
                 };
 
                 var haveLocalGroundWater = cubicMeterGroundWater.Any(it => it.Area_Code == area_Code);
@@ -314,14 +322,14 @@ namespace NSOFunction
                     {
                         if (it.Area_Code == area_Code)
                         {
-                            var ari = cubicMeterBuying.CubicMeterBuyingForAgriculture;
-                            var ser = cubicMeterBuying.CubicMeterBuyingForService;
-                            var pro = cubicMeterBuying.CubicMeterBuyingForProduct;
-                            var dri = cubicMeterBuying.CubicMeterBuyingForDrink;
-                            it.CubicMeterBuyingForAgriculture = ari;
-                            it.CubicMeterBuyingForService = ser;
-                            it.CubicMeterBuyingForProduct = pro;
-                            it.CubicMeterBuyingForDrink = dri;
+                            var ari = cubicMeterBuying.CubicMeterGroundWaterForAgricultureBuying;
+                            var ser = cubicMeterBuying.CubicMeterGroundWaterForServiceBuying;
+                            var pro = cubicMeterBuying.CubicMeterGroundWaterForProductBuying;
+                            var dri = cubicMeterBuying.CubicMeterGroundWaterForDrinkBuying;
+                            it.CubicMeterGroundWaterForAgricultureBuying = ari;
+                            it.CubicMeterGroundWaterForServiceBuying = ser;
+                            it.CubicMeterGroundWaterForProductBuying = pro;
+                            it.CubicMeterGroundWaterForDrinkBuying = dri;
                             it.CubicMeterGroundWaterForAgriculture += ari;
                             it.CubicMeterGroundWaterForService += ser;
                             it.CubicMeterGroundWaterForProduct += pro;

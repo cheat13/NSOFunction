@@ -93,30 +93,6 @@ namespace NSOFunction.Models
         public double Farm { get; set; }
 
         /// <summary>
-        /// ปริมาณน้ำซื้อที่ใช้เพื่อการเกษตร
-        /// </summary>
-        /// <value></value>
-        public double CubicMeterBuyingForAgriculture { get; set; }
-
-        /// <summary>
-        /// ปริมาณน้ำซื้อที่ใช้เพื่อการบริการ
-        /// </summary>
-        /// <value></value>
-        public double CubicMeterBuyingForService { get; set; }
-
-        /// <summary>
-        /// ปริมาณน้ำซื้อที่ใช้เพื่อการอุตสาหกรรม
-        /// </summary>
-        /// /// <value></value>
-        public double CubicMeterBuyingForProduct { get; set; }
-
-        /// <summary>
-        /// ปริมาณน้ำซื้อที่ใช้เพื่อการอุปโภคบริโภค
-        /// </summary>
-        /// <value></value>
-        public double CubicMeterBuyingForDrink { get; set; }
-
-        /// <summary>
         /// คำนวณปริมาณการใช้น้ำบาดาลเพื่อการเกษตรได้
         /// </summary>
         public StatusCompute CanComputeCubicMeterGroundWaterForAgriculture { get; set; }

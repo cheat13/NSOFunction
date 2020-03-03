@@ -96,30 +96,6 @@ namespace NSOFunction.Models
         /// สัดส่วนเพื่อการทำนา
         /// </summary>
         public double Farm { get; set; }
-
-        /// <summary>
-        /// ปริมาณน้ำซื้อที่ใช้เพื่อการเกษตร
-        /// </summary>
-        /// <value></value>
-        public double CubicMeterBuyingForAgriculture { get; set; }
-
-        /// <summary>
-        /// ปริมาณน้ำซื้อที่ใช้เพื่อการบริการ
-        /// </summary>
-        /// <value></value>
-        public double CubicMeterBuyingForService { get; set; }
-
-        /// <summary>
-        /// ปริมาณน้ำซื้อที่ใช้เพื่อการอุตสาหกรรม
-        /// </summary>
-        /// /// <value></value>
-        public double CubicMeterBuyingForProduct { get; set; }
-
-        /// <summary>
-        /// ปริมาณน้ำซื้อที่ใช้เพื่อการอุปโภคบริโภค
-        /// </summary>
-        /// <value></value>
-        public double CubicMeterBuyingForDrink { get; set; }
         #endregion
 
         #region Plumbing
@@ -767,17 +743,17 @@ namespace NSOFunction.Models
         public int PeopleInFloodedArea { get; set; }
 
         /// <summary>
-        /// 26.1 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล) สน.1
+        /// 26.1 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล)
         /// </summary>
         public double CubicMeterGroundWaterForAgricultureGroundWater { get; set; }
 
         /// <summary>
-        /// 26.2 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำซื้อ) สน.1
+        /// 26.2 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำซื้อ)
         /// </summary>
         public double CubicMeterGroundWaterForAgricultureBuying { get; set; }
 
         /// <summary>
-        /// 26.3 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล น้ำซื้อ) สน.1
+        /// 26.3 ปริมาณการใช้น้ำบาดาลเพื่อการเกษตร(น้ำบาดาล น้ำซื้อ)
         /// </summary>
         public double CubicMeterGroundWaterForAgriculture { get; set; }
 
@@ -812,17 +788,17 @@ namespace NSOFunction.Models
         public double CubicMeterGroundWaterForProduct { get; set; }
 
         /// <summary>
-        /// 29.1 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล) สน.1
+        /// 29.1 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล)
         /// </summary>
         public double CubicMeterGroundWaterForDrinkGroundWater { get; set; }
 
         /// <summary>
-        /// 29.2 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำซื้อ) สน.1
+        /// 29.2 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำซื้อ)
         /// </summary>
         public double CubicMeterGroundWaterForDrinkBuying { get; set; }
 
         /// <summary>
-        /// 29.3 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล น้ำซื้อ) สน.1
+        /// 29.3 ปริมาณการใช้น้ำบาดาลเพื่อการอุปโภคบริโภค(น้ำบาดาล น้ำซื้อ)
         /// </summary>
         public double CubicMeterGroundWaterForDrink { get; set; }
 
@@ -907,27 +883,27 @@ namespace NSOFunction.Models
         public double CubicMeterPlumbingForDrink { get; set; }
 
         /// <summary>
-        /// 34.1 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ) สน.1
+        /// 34.1 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ)
         /// </summary>
         public double CubicMeterSurfaceForAgriculturePool { get; set; }
 
         /// <summary>
-        /// 34.2 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (แม่น้ำ) สน.1
+        /// 34.2 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (แม่น้ำ)
         /// </summary>
         public double CubicMeterSurfaceForAgricultureRiver { get; set; }
 
         /// <summary>
-        /// 34.3 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (ชลประทาน) สน.1
+        /// 34.3 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (ชลประทาน)
         /// </summary>
         public double CubicMeterSurfaceForAgricultureIrrigation { get; set; }
 
         /// <summary>
-        /// 34.4 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (น้ำฝนกักเก็บ) สน.1
+        /// 34.4 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (น้ำฝนกักเก็บ)
         /// </summary>
         public double CubicMeterSurfaceForAgricultureRain { get; set; }
 
         /// <summary>
-        /// 34.5 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ) สน.1
+        /// 34.5 ปริมาณการใช้น้ำผิวดินเพื่อการเกษตร (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
         /// </summary>
         public double CubicMeterSurfaceForAgriculture { get; set; }
 
@@ -982,27 +958,27 @@ namespace NSOFunction.Models
         public double CubicMeterSurfaceForProduct { get; set; }
 
         /// <summary>
-        /// 37.1 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ) สน.1
+        /// 37.1 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ)
         /// </summary>
         public double CubicMeterSurfaceForDrinkPool { get; set; }
 
         /// <summary>
-        /// 37.2 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (แม่น้ำ) สน.1
+        /// 37.2 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (แม่น้ำ)
         /// </summary>
         public double CubicMeterSurfaceForDrinkRiver { get; set; }
 
         /// <summary>
-        /// 37.3 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (ชลประทาน) สน.1
+        /// 37.3 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (ชลประทาน)
         /// </summary>
         public double CubicMeterSurfaceForDrinkIrrigation { get; set; }
 
         /// <summary>
-        /// 37.4 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (น้ำฝนกักเก็บ) สน.1
+        /// 37.4 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (น้ำฝนกักเก็บ)
         /// </summary>
         public double CubicMeterSurfaceForDrinkRain { get; set; }
 
         /// <summary>
-        /// 37.5 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ) สน.1
+        /// 37.5 ปริมาณการใช้น้ำผิวดินเพื่อการอุปโภคบริโภค (สระน้ำ แม่น้ำ ชลประทาน น้ำฝนกักเก็บ)
         /// </summary>
         public double CubicMeterSurfaceForDrink { get; set; }
 
