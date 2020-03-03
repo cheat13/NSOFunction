@@ -47,7 +47,7 @@ namespace NSOFunction
                          }
                          else if (it.UsageType.GroundWaterQuantity == GroundWaterQuantity.Unknown && (it.HasPump == true))
                          {
-                             return CalcPumps(it.Pumps, true) * WaterActivity(it.WaterActivities, character) / 100;
+                             return CalcPumps(it.Pumps, true, character) * WaterActivity(it.WaterActivities, character) / 100;
                          }
                          else
                          {
@@ -81,7 +81,7 @@ namespace NSOFunction
                       }
                       else if (it.HasPump == true)
                       {
-                          return CalcPumps(it.Pumps, true) * WaterActivity(it.WaterActivities, character) / 100;
+                          return CalcPumps(it.Pumps, true, character) * WaterActivity(it.WaterActivities, character) / 100;
                       }
                       else
                       {
@@ -127,9 +127,9 @@ namespace NSOFunction
             return areas.Any(it => it == location.Province);
         }
 
-        private double CalcPumps(List<Pump> pumps, bool isGround)
+        private double CalcPumps(List<Pump> pumps, bool isGround, WaterCharacter character)
         {
-            return pumps.Where(it => it != null).Sum(it =>
+            var cubicMeter = pumps.Where(it => it != null).Sum(it =>
             {
                 if (it?.PumpAuto == false)
                 {
@@ -148,6 +148,22 @@ namespace NSOFunction
                     return 0;
                 }
             });
+
+            if (pumps.Any(it => it?.PumpAuto == true))
+            {
+                switch (character)
+                {
+                    case WaterCharacter.IsHouseHold: return cubicMeter + 131.4;
+                    case WaterCharacter.IsAgriculture: return cubicMeter + 3840;
+                    case WaterCharacter.IsFactorial: return cubicMeter + 2496;
+                    case WaterCharacter.IsCommercial: return cubicMeter + 468;
+                    default: return cubicMeter;
+                }
+            }
+            else
+            {
+                return cubicMeter;
+            }
         }
 
         private double CalcPumpRate(Pump pump, bool isGround)

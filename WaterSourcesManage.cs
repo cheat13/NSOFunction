@@ -22,7 +22,9 @@ namespace NSOFunction
 
         public double GetWaterSources()
         {
-            return Details.Any() ? Details.Where(it => it != null).Sum(it => CalcCapacity(it)) : 0;
+            var waterSources = Details.Any() ? Details.Where(it => it != null).Sum(it => CalcCapacity(it)) : 0;
+            if (waterSources < 1260) waterSources = 0;
+            return waterSources;
         }
 
         public double CalcCapacity(DetailWaterManagement detail)

@@ -71,9 +71,9 @@ namespace NSOFunction
             }
         }
 
-        public List<WaterPoolHouseHold> WaterSourcesHouseHold(string ea, bool? IsHouseHold, Pool Pools)
+        public List<WaterPoolHouseHold> WaterSourcesHouseHold(string ea, bool? IsHouseHold, bool? IsAgriculture, bool? IsFactorial, bool? IsCommercial, Pool Pools)
         {
-            if (IsHouseHold == true && Pools?.Doing == true && Pools?.PoolCount > 0)
+            if (IsHouseHold == true && IsAgriculture == true && IsFactorial == true && IsCommercial == true && Pools?.Doing == true && Pools?.PoolCount > 0)
             {
                 return Pools.PoolSizes.GroupBy(it => GetAreaCode(ea, it.Location),
                     it => it,
@@ -110,22 +110,14 @@ namespace NSOFunction
             return wsManage.GetWaterSources();
         }
 
-        public PopulationCount CountPopulation(bool? IsHouseHold, Population Population, Residential Residence)
+        public PopulationCount CountPopulation(bool? IsHouseHold, Residential Residence)
         {
-            var count = Population?.AllPersonCount ?? Residence?.MemberCount ?? 0;
+            var count = Residence?.MemberCount ?? 0;
             if (count == 3000000000) count = 3;
-            var skip = Population?.Skip == "true"
-                ? "1"
-                : Population?.Skip == "false"
-                    ? "2"
-                    : Population?.Skip;
             return new PopulationCount
             {
                 CountPopulation = IsHouseHold == true ? (int)count : 0,
                 CountWorkingAge = IsHouseHold == true ? Residence?.WorkingAge ?? 0 : 0,
-                Skip = skip,
-                ResidentialPersonCount = Residence?.MemberCount ?? 0,
-                PopulationPersonCount = Population?.AllPersonCount ?? 0,
             };
         }
 
@@ -616,14 +608,23 @@ namespace NSOFunction
         public WaterFlood Disasterous(Disasterous Disaster, bool? IsHouseHold)
         {
             var isChecked = IsHouseHold == true && Disaster?.Flooded == true;
+            var avgWaterHeightCm = isChecked
+                    ? Disaster.YearsDisasterous.Average(it => it.WaterHeightCm ?? 0) / 100
+                    : 0;
+            var timeWaterHeightCm = isChecked
+                    ? Disaster.YearsDisasterous.Average(it => (it.Count ?? 0) * (it.AvgDay ?? 0) * 24 + (it.AvgHour ?? 0))
+                    : 0;
+
+            if (avgWaterHeightCm == 0 || timeWaterHeightCm == 0)
+            {
+                avgWaterHeightCm = 0;
+                timeWaterHeightCm = 0;
+            }
+            
             return new WaterFlood
             {
-                AvgWaterHeightCm = isChecked
-                    ? Disaster.YearsDisasterous.Average(it => it.WaterHeightCm ?? 0) / 100
-                    : 0,
-                TimeWaterHeightCm = isChecked
-                    ? Disaster.YearsDisasterous.Average(it => (it.Count ?? 0) * (it.AvgDay ?? 0) * 24 + (it.AvgHour ?? 0))
-                    : 0,
+                AvgWaterHeightCm = avgWaterHeightCm,
+                TimeWaterHeightCm = timeWaterHeightCm
             };
         }
 
@@ -634,11 +635,12 @@ namespace NSOFunction
                 : 0.0;
         }
 
-        public int HasntPlumbing(Plumbing Plumbing)
+        public int HasntPlumbing(Plumbing Plumbing, bool? IsHouseHold, bool? IsAgriculture, bool? IsFactorial, bool? IsCommercial)
         {
+            var anyG = IsHouseHold == true || IsAgriculture == true || IsFactorial == true || IsCommercial == true;
             var count = Plumbing?.WaterNotRunningCount ?? 0;
             if (count > 12) count = 12;
-            return 12 - (int)count;
+            return anyG ? 12 - (int)count : 12;
         }
 
         public int IndustryHasWasteWaterTreatment(bool? IsFactorial, Factorial Factory)

@@ -61,7 +61,7 @@ namespace NSOFunction
 
         public PopulationCount CountPopulation(HouseHoldSample unit)
         {
-            return Water.CountPopulation(unit?.IsHouseHold, unit?.Population, unit?.Residence);
+            return Water.CountPopulation(unit?.IsHouseHold, unit?.Residence);
         }
 
         public WaterFlood Disasterous(HouseHoldSample unit)
@@ -71,7 +71,7 @@ namespace NSOFunction
 
         public int HasntPlumbing(HouseHoldSample unit)
         {
-            return Water.HasntPlumbing(unit?.WaterUsage?.Plumbing);
+            return Water.HasntPlumbing(unit?.WaterUsage?.Plumbing, unit?.IsHouseHold, unit?.IsAgriculture, unit?.IsFactorial, unit?.IsCommercial);
         }
 
         public PlumbingServiceUsage PlumbingSeviceUsage(BuildingSample building, HouseHoldSample unit)
@@ -101,7 +101,7 @@ namespace NSOFunction
 
         public List<WaterPoolHouseHold> WaterSourcesHouseHold(string ea, HouseHoldSample unit)
         {
-            return Water.WaterSourcesHouseHold(ea, unit?.IsHouseHold, unit?.WaterUsage?.Pool);
+            return Water.WaterSourcesHouseHold(ea, unit?.IsHouseHold, unit?.IsAgriculture, unit?.IsFactorial, unit?.IsCommercial, unit?.WaterUsage?.Pool);
         }
 
         public double WaterSourcesCommunity(string ea, CommunitySample com)

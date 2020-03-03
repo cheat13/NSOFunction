@@ -145,6 +145,26 @@ namespace NSOFunction
                 })
                 : 0;
 
+            if (pumps.Any(it => it?.PumpAuto == true))
+            {
+                switch (character)
+                {
+                    case WaterCharacter.IsHouseHold:
+                        cubicMeter += 131.4;
+                        break;
+                    case WaterCharacter.IsAgriculture:
+                        cubicMeter += 3840;
+                        break;
+                    case WaterCharacter.IsFactorial:
+                        cubicMeter += 2496;
+                        break;
+                    case WaterCharacter.IsCommercial:
+                        cubicMeter += 468;
+                        break;
+                    default: break;
+                }
+            }
+
             return new CubicMeterRequest
             {
                 CanCompute = canCumpute,
