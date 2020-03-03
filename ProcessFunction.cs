@@ -642,6 +642,7 @@ namespace NSOFunction
                 CanComputeCubicMeterSurfaceForDrink = StatusCompute.NA,
                 CanComputeCubicMeterForDrink = StatusCompute.NA,
                 Duplicate = false,
+                Road = bld.Road
             };
         }
 
