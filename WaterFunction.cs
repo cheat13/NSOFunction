@@ -467,16 +467,16 @@ namespace NSOFunction
                 {
                     var agr = isAgriculture == true
                         ? cmsManage.CalcPool(pool?.WaterResources, WaterCharacter.IsAgriculture)
-                        : new CubicMeterRequest { CanCompute = StatusCompute.NA, CubicMeter = 0 };
+                        : new CubicMeterSurfaceRequest { CanCompute = StatusCompute.NA, CubicMeterPool = 0 };
                     var ser = isCommercial == true && commercial?.WaterSources?.Pool == true
                         ? cmsManage.CalcPool(pool?.WaterResources, WaterCharacter.IsCommercial)
-                        : new CubicMeterRequest { CanCompute = StatusCompute.NA, CubicMeter = 0 };
+                        : new CubicMeterSurfaceRequest { CanCompute = StatusCompute.NA, CubicMeterPool = 0 };
                     var pro = isFactorial == true && factorial?.WaterSources?.Pool == true
                         ? cmsManage.CalcPool(pool?.WaterResources, WaterCharacter.IsFactorial)
-                        : new CubicMeterRequest { CanCompute = StatusCompute.NA, CubicMeter = 0 };
+                        : new CubicMeterSurfaceRequest { CanCompute = StatusCompute.NA, CubicMeterPool = 0 };
                     var dri = isHouseHold == true && residential?.WaterSources?.Pool == true
                         ? cmsManage.CalcPool(pool?.WaterResources, WaterCharacter.IsHouseHold)
-                        : new CubicMeterRequest { CanCompute = StatusCompute.NA, CubicMeter = 0 };
+                        : new CubicMeterSurfaceRequest { CanCompute = StatusCompute.NA, CubicMeterPool = 0 };
 
                     var waterResourceCount = pool?.WaterResources?.Count() ?? 0;
                     var cubicMeterPerMonthPool = pool?.WaterResources?.Sum(it => it?.CubicMeterPerMonth ?? 0) ?? 0;
@@ -522,10 +522,10 @@ namespace NSOFunction
                                     CanComputeCubicMeterSurfaceForService = ser.CanCompute,
                                     CanComputeCubicMeterSurfaceForProduct = pro.CanCompute,
                                     CanComputeCubicMeterSurfaceForDrink = dri.CanCompute,
-                                    CubicMeterSurfaceForAgriculture = agr.CubicMeter / poolCount * count,
-                                    CubicMeterSurfaceForService = ser.CubicMeter / poolCount * count,
-                                    CubicMeterSurfaceForProduct = pro.CubicMeter / poolCount * count,
-                                    CubicMeterSurfaceForDrink = dri.CubicMeter / poolCount * count,
+                                    CubicMeterSurfaceForAgriculture = agr.CubicMeterPool / poolCount * count,
+                                    CubicMeterSurfaceForService = ser.CubicMeterPool / poolCount * count,
+                                    CubicMeterSurfaceForProduct = pro.CubicMeterPool / poolCount * count,
+                                    CubicMeterSurfaceForDrink = dri.CubicMeterPool / poolCount * count,
                                     AdjustedCubicMeterSurfaceForAgriculture = agr.Adjusted,
                                     AdjustedCubicMeterSurfaceForService = ser.Adjusted,
                                     AdjustedCubicMeterSurfaceForProduct = pro.Adjusted,
@@ -597,9 +597,25 @@ namespace NSOFunction
                     CanComputeCubicMeterSurfaceForService = status.CheckStatusCompute(new List<StatusCompute> { serSurvey.CanCompute, localPool.CanComputeCubicMeterSurfaceForService }),
                     CanComputeCubicMeterSurfaceForProduct = status.CheckStatusCompute(new List<StatusCompute> { proSurvey.CanCompute, localPool.CanComputeCubicMeterSurfaceForProduct }),
                     CanComputeCubicMeterSurfaceForDrink = status.CheckStatusCompute(new List<StatusCompute> { driSurvey.CanCompute, localPool.CanComputeCubicMeterSurfaceForDrink }),
+                    CubicMeterSurfaceForAgriculturePool = agrSurvey.CubicMeterPool,
+                    CubicMeterSurfaceForAgricultureRiver = agrSurvey.CubicMeterRiver,
+                    CubicMeterSurfaceForAgricultureIrrigation = agrSurvey.CubicMeterIrrigation,
+                    CubicMeterSurfaceForAgricultureRain = agrSurvey.CubicMeterRain,
                     CubicMeterSurfaceForAgriculture = agrSurvey.CubicMeter + localPool.CubicMeterSurfaceForAgriculture,
+                    CubicMeterSurfaceForServicePool = serSurvey.CubicMeterPool,
+                    CubicMeterSurfaceForServiceRiver = serSurvey.CubicMeterRiver,
+                    CubicMeterSurfaceForServiceIrrigation = serSurvey.CubicMeterIrrigation,
+                    CubicMeterSurfaceForServiceRain = serSurvey.CubicMeterRain,
                     CubicMeterSurfaceForService = serSurvey.CubicMeter + localPool.CubicMeterSurfaceForService,
+                    CubicMeterSurfaceForProductPool = proSurvey.CubicMeterPool,
+                    CubicMeterSurfaceForProductRiver = proSurvey.CubicMeterRiver,
+                    CubicMeterSurfaceForProductIrrigation = proSurvey.CubicMeterIrrigation,
+                    CubicMeterSurfaceForProductRain = proSurvey.CubicMeterRain,
                     CubicMeterSurfaceForProduct = proSurvey.CubicMeter + localPool.CubicMeterSurfaceForProduct,
+                    CubicMeterSurfaceForDrinkPool = driSurvey.CubicMeterPool,
+                    CubicMeterSurfaceForDrinkRiver = driSurvey.CubicMeterRiver,
+                    CubicMeterSurfaceForDrinkIrrigation = driSurvey.CubicMeterIrrigation,
+                    CubicMeterSurfaceForDrinkRain = driSurvey.CubicMeterRain,
                     CubicMeterSurfaceForDrink = driSurvey.CubicMeter + localPool.CubicMeterSurfaceForDrink,
                     AdjustedCubicMeterSurfaceForAgriculture = agrSurvey.Adjusted || localPool.AdjustedCubicMeterSurfaceForAgriculture,
                     AdjustedCubicMeterSurfaceForService = serSurvey.Adjusted || localPool.AdjustedCubicMeterSurfaceForService,
