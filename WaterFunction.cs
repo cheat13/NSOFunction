@@ -312,19 +312,22 @@ namespace NSOFunction
                 {
                     cubicMeterGroundWater.ForEach(it =>
                     {
-                        var ari = cubicMeterBuying.CubicMeterBuyingForAgriculture;
-                        var ser = cubicMeterBuying.CubicMeterBuyingForService;
-                        var pro = cubicMeterBuying.CubicMeterBuyingForProduct;
-                        var dri = cubicMeterBuying.CubicMeterBuyingForDrink;
-                        it.CubicMeterBuyingForAgriculture = ari;
-                        it.CubicMeterBuyingForService = ser;
-                        it.CubicMeterBuyingForProduct = pro;
-                        it.CubicMeterBuyingForDrink = dri;
-                        it.CubicMeterGroundWaterForAgriculture += ari;
-                        it.CubicMeterGroundWaterForService += ser;
-                        it.CubicMeterGroundWaterForProduct += pro;
-                        it.CubicMeterGroundWaterForDrink += dri;
-                        it.CubicMeterGroundWaterForUse += ari + ser + pro + dri;
+                        if (it.Area_Code == area_Code)
+                        {
+                            var ari = cubicMeterBuying.CubicMeterBuyingForAgriculture;
+                            var ser = cubicMeterBuying.CubicMeterBuyingForService;
+                            var pro = cubicMeterBuying.CubicMeterBuyingForProduct;
+                            var dri = cubicMeterBuying.CubicMeterBuyingForDrink;
+                            it.CubicMeterBuyingForAgriculture = ari;
+                            it.CubicMeterBuyingForService = ser;
+                            it.CubicMeterBuyingForProduct = pro;
+                            it.CubicMeterBuyingForDrink = dri;
+                            it.CubicMeterGroundWaterForAgriculture += ari;
+                            it.CubicMeterGroundWaterForService += ser;
+                            it.CubicMeterGroundWaterForProduct += pro;
+                            it.CubicMeterGroundWaterForDrink += dri;
+                            it.CubicMeterGroundWaterForUse += ari + ser + pro + dri;
+                        }
                     });
                 }
                 else
@@ -620,7 +623,7 @@ namespace NSOFunction
                 avgWaterHeightCm = 0;
                 timeWaterHeightCm = 0;
             }
-            
+
             return new WaterFlood
             {
                 AvgWaterHeightCm = avgWaterHeightCm,
