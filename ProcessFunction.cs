@@ -9,10 +9,11 @@ namespace NSOFunction
 {
     public class ProcessFunction
     {
+        private static IMongoDatabase database { get; set; }
         private BaseFunction baseFn { get; set; }
-        public ProcessFunction()
+        public ProcessFunction(IMongoDatabase database)
         {
-            this.baseFn = new BaseFunction();
+            this.baseFn = new BaseFunction(database);
         }
 
         public List<DataProcessed> UnitProcessing(string ea, HouseHoldSample unt, BuildingSample bld, List<CommunitySample> com)

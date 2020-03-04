@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Driver;
 using NSOFunction.Models;
 using NSOWater.HotMigration.Models;
 
@@ -7,11 +8,12 @@ namespace NSOFunction
 {
     public class BaseFunction : IBaseFunction
     {
+        private static IMongoDatabase database { get; set; }
         public WaterFunction Water { get; set; }
 
-        public BaseFunction()
+        public BaseFunction(IMongoDatabase database)
         {
-            this.Water = new WaterFunction();
+            this.Water = new WaterFunction(database);
         }
 
         public AgricultureModel Agriculture(HouseHoldSample unit)

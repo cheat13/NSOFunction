@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading;
 using CsvHelper;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using NSOFunction.Models;
@@ -17,88 +12,40 @@ namespace NSOFunction
 {
     class Program
     {
+        private static string _path = @"???";
+        private static IMongoDatabase database { get; set; }
         private static IMongoCollection<SurveyData> surveyData { get; set; }
         private static IMongoCollection<ReportEaInfo> reportEAInfo { get; set; }
         private static IMongoCollection<RecordProcessed> recordProcessed { get; set; }
-        private static CloudBlobClient blobClient { get; set; }
+        private static IMongoCollection<EaApproved> eaApproved { get; set; }
+        private static IMongoCollection<ContainerBlobData> containerBlobData { get; set; }
         private static ProcessFunction processFunction { get; set; }
         public static int Task = 0;
         public static int CurrentTask = 0;
-        public static int CWTTask = 0;
-        public static int CurrentCWTTask = 0;
-        public static int EATask = 0;
-        public static int CurrentEATask = 0;
+        public static int SubTask = 0;
+        public static int CurrentSubTask = 0;
         private const string animation = @"|/-\";
         private static int animationIndex = 0;
 
         static void Main(string[] args)
         {
-            var client = new MongoClient("mongodb://dbagent:Nso4Passw0rd5@mongodbproykgte5e7lvm7y-vm0.southeastasia.cloudapp.azure.com/nso");
-            var database = client.GetDatabase("nso");
-            reportEAInfo = database.GetCollection<ReportEaInfo>("reporteainfo");
-            surveyData = database.GetCollection<SurveyData>("survey");
+            var client = new MongoClient("mongodb://firstclass:Th35F1rstCla55@mongodbnewzfdggw5bmqhbq-vm0.southeastasia.cloudapp.azure.com/water");
+            database = client.GetDatabase("water");
+            eaApproved = database.GetCollection<EaApproved>("EaApproved");
             recordProcessed = database.GetCollection<RecordProcessed>("recordprocessed");
+            surveyData = database.GetCollection<SurveyData>("Survey");
+            containerBlobData = database.GetCollection<ContainerBlobData>("ContainerBlobData");
 
-            var storage = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=nsostorage;AccountKey=Lzw/JGZTvtHoRxo8GKjWQy5rm3vprPahD4YsoRXhi7Ai+Gyg34tq+Y+HrEuNf5SOAib1jNNavkFVghaKk/488w==;EndpointSuffix=core.windows.net");
-            blobClient = storage.CreateCloudBlobClient();
+            processFunction = new ProcessFunction(database);
 
-            processFunction = new ProcessFunction();
-
-            var CWTLst = reportEAInfo.AsQueryable().Select(it => it.CWT).Distinct().OrderBy(it => it).Skip(64).Take(13).ToList();
-            ProcessCWTLst(CWTLst);
-
-            // Console.Write("CWT: ");
-            // var cwt = Console.ReadLine();
-            // ProcessCWT(cwt);
-
-            // Console.Write("Area_Code: ");
-            // var area_Code = Console.ReadLine();
-            // ProcessTAM(area_Code);
-
-            // Console.Write("EA: ");
-            // var ea = Console.ReadLine();
-            // var hasProcessed = recordProcessed.Find(it => it._id == ea && it.Status == true).AnyAsync().GetAwaiter().GetResult();
-            // if (!hasProcessed)
-            // {
-            //     ProcessEA(ea);
-            // }
+            var eaLst = eaApproved.AsQueryable().Select(it => it.EA).ToList();
+            Processing(eaLst);
 
             Console.WriteLine("Done!");
         }
 
-        private static void ProcessCWTLst(IEnumerable<string> cwtLst)
+        private static void Processing(IEnumerable<string> eaLst)
         {
-            Task = cwtLst.Count();
-            Console.WriteLine($"CWT count: {cwtLst.Count()}");
-
-            foreach (var cwt in cwtLst)
-            {
-                ProcessCWT(cwt);
-                CurrentTask++;
-            }
-
-            CurrentTask = Task;
-            ProgressBar();
-        }
-
-        private static void ProcessCWT(string cwt)
-        {
-            Processing(it => it.CWT == cwt && (it.DateApproveFs.HasValue || it.DateApprovePs.HasValue));
-        }
-
-        private static void ProcessTAM(string area_Code)
-        {
-            Processing(it => it.Area_Code == area_Code && (it.DateApproveFs.HasValue || it.DateApprovePs.HasValue));
-        }
-
-        private static void Processing(Expression<Func<ReportEaInfo, bool>> expression)
-        {
-            var eaLst = reportEAInfo.Find(expression)
-                .Project(it => it._id)
-                .ToListAsync()
-                .GetAwaiter()
-                .GetResult();
-
             var eaProcessed = recordProcessed.Find(it => eaLst.Contains(it._id) && it.Status == true)
                 .Project(it => it._id)
                 .ToListAsync()
@@ -107,17 +54,17 @@ namespace NSOFunction
 
             var qryEA = eaLst.Except(eaProcessed);
 
-            CWTTask = qryEA.Count();
+            Task = qryEA.Count();
 
             foreach (var ea in qryEA)
             {
                 ProcessEA(ea);
-                CurrentCWTTask++;
+                CurrentTask++;
             }
 
-            CurrentCWTTask = CWTTask;
+            CurrentSubTask = SubTask;
             ProgressBar();
-            CWTTask = 0;
+            SubTask = 0;
         }
 
         private static void ProcessEA(string ea)
@@ -129,20 +76,35 @@ namespace NSOFunction
                 var dataLst = new List<DataProcessed>();
                 var commuLst = new List<CommunitySample>();
 
-                var surveys = surveyData.Find(it => it.EA == ea && it.Enlisted == true && it.DeletionDateTime == null)
+                var surveys = surveyData.Find(it => it.EA == ea)
                     .ToListAsync()
                     .GetAwaiter()
-                    .GetResult();
+                    .GetResult()
+                    .Select(it =>
+                        new
+                        {
+                            SampleType = it.SampleType,
+                            BuildingId = it.BuildingId,
+                            ContainerName = it.ContainerName,
+                            BlobName = it.BlobName
+                        })
+                    .ToList();
 
-                EATask = surveys.Count();
+                SubTask = surveys.Count();
 
                 var comLst = surveys.Where(it => it.SampleType == "c").ToList();
 
                 foreach (var com in comLst)
                 {
-                    var container = blobClient.GetContainerReference(com.ContainerName);
-                    var commu = ReadModelFrom<CommunitySample>(container, com.BlobName);
-                    commuLst.Add(commu);
+                    try
+                    {
+                        var commu = ReadModelFrom<CommunitySample>(com.ContainerName, com.BlobName);
+                        commuLst.Add(commu);
+                    }
+                    catch (System.Exception)
+                    {
+                        continue;
+                    }
                 }
 
                 var qryCommu = commuLst
@@ -155,7 +117,7 @@ namespace NSOFunction
                     var dataProcessed = processFunction.CommunityProcessing(ea, commu);
                     dataLst.Add(dataProcessed);
 
-                    CurrentEATask++;
+                    CurrentSubTask++;
                     ProgressBar();
                 }
 
@@ -164,44 +126,54 @@ namespace NSOFunction
                 foreach (var grp in sampleGroup)
                 {
                     var bld = grp.FirstOrDefault(it => it.SampleType == "b");
-                    if (bld == null)
-                    {
-                        continue;
-                    }
-                    var container = blobClient.GetContainerReference(bld.ContainerName);
-                    var building = ReadModelFrom<BuildingSample>(container, bld.BlobName);
+                    if (bld == null) continue;
 
-                    var isType4or5 = building.BuildingType == BuildingType.Apartment || building.BuildingType == BuildingType.Office;
-                    var isNotAllowGiveInfo = building.UnitAccess == UnitAccess.NotAllowGiveInfo;
-
-                    if (isType4or5 && isNotAllowGiveInfo)
+                    try
                     {
-                        var dataProcessed = processFunction.BuildingProcessing(ea, building);
-                        dataLst.Add(dataProcessed);
+                        var building = ReadModelFrom<BuildingSample>(bld.ContainerName, bld.BlobName);
 
-                        CurrentEATask++;
-                        ProgressBar();
-                    }
-                    else
-                    {
-                        var untLst = grp.Where(it => it.SampleType == "u").ToList();
-                        foreach (var unt in untLst)
+                        var isType4or5 = building.BuildingType == BuildingType.Apartment || building.BuildingType == BuildingType.Office;
+                        var isNotAllowGiveInfo = building.UnitAccess == UnitAccess.NotAllowGiveInfo;
+
+                        if (isType4or5 && isNotAllowGiveInfo)
                         {
-                            try
-                            {
-                                var containerUnt = blobClient.GetContainerReference(unt.ContainerName);
-                                var unit = ReadModelFrom<HouseHoldSample>(containerUnt, unt.BlobName);
-                                var dataProcessedLst = processFunction.UnitProcessing(ea, unit, building, qryCommu);
-                                dataLst.AddRange(dataProcessedLst);
+                            var dataProcessed = processFunction.BuildingProcessing(ea, building);
+                            dataLst.Add(dataProcessed);
 
-                                CurrentEATask++;
-                                ProgressBar();
-                            }
-                            catch (System.Exception)
+                            CurrentSubTask++;
+                            ProgressBar();
+                        }
+                        else
+                        {
+                            var untLst = grp.Where(it => it.SampleType == "u").ToList();
+                            foreach (var unt in untLst)
                             {
-                                throw;
+                                try
+                                {
+                                    try
+                                    {
+                                        var unit = ReadModelFrom<HouseHoldSample>(unt.ContainerName, unt.BlobName);
+                                        var dataProcessedLst = processFunction.UnitProcessing(ea, unit, building, qryCommu);
+                                        dataLst.AddRange(dataProcessedLst);
+                                    }
+                                    catch (System.Exception)
+                                    {
+                                        continue;
+                                    }
+
+                                    CurrentSubTask++;
+                                    ProgressBar();
+                                }
+                                catch (System.Exception)
+                                {
+                                    throw;
+                                }
                             }
                         }
+                    }
+                    catch (System.Exception)
+                    {
+                        continue;
                     }
                 }
 
@@ -213,30 +185,30 @@ namespace NSOFunction
                 UpSertRecord(ea, false, e.Message);
             }
 
-            CurrentEATask = EATask;
+            CurrentSubTask = SubTask;
             ProgressBar();
-            CurrentEATask = 0;
+            CurrentSubTask = 0;
         }
 
-        private static T ReadModelFrom<T>(CloudBlobContainer container, string fileName)
+        private static T ReadModelFrom<T>(string containerName, string blobName)
         {
-            var blob = container.GetBlockBlobReference(fileName);
-            var blobContent = blob.DownloadTextAsync().GetAwaiter().GetResult();
-            var model = JsonConvert.DeserializeObject<T>(blobContent);
+            using (var reader = new StreamReader($@"{_path}\{containerName}\{blobName}"))
+            {
+                var jsonString = reader.ReadToEnd();
+                var model = JsonConvert.DeserializeObject<T>(jsonString);
 
-            return model;
+                return model;
+            }
         }
 
         private static void ProgressBar()
         {
             var progressTask = (Task > 0) ? (double)CurrentTask / Task : 0;
-            var progressCWTTask = (CWTTask > 0) ? (double)CurrentCWTTask / CWTTask : 0;
-            var progressEATask = (EATask > 0) ? (double)CurrentEATask / EATask : 0;
+            var progressSubTask = (SubTask > 0) ? (double)CurrentSubTask / SubTask : 0;
 
-            if (Task > 0) progressCWTTask /= Task;
-            if (CWTTask > 0) progressEATask /= Task * CWTTask;
+            if (Task > 0) progressSubTask /= Task;
 
-            var currentProgress = progressTask + progressCWTTask + progressEATask;
+            var currentProgress = progressTask + progressSubTask;
             var progressBlockCount = (int)(currentProgress * 50);
             var percent = currentProgress * 100;
             var progress = string.Format("\r[{0}{1}] {2,6:N2}%  {3}",

@@ -9,12 +9,11 @@ namespace NSOFunction
 {
     public class WaterFunction : IWaterFunction
     {
+        private static IMongoDatabase database { get; set; }
         public IMongoCollection<Reservoir> Reservoir { get; set; }
         public IEnumerable<EAInfo> EAInfo { get; set; }
-        public WaterFunction()
+        public WaterFunction(IMongoDatabase database)
         {
-            var client = new MongoClient("mongodb://dbagent:Nso4Passw0rd5@mongodbproykgte5e7lvm7y-vm0.southeastasia.cloudapp.azure.com/nso");
-            var database = client.GetDatabase("nso");
             var collectionEA = database.GetCollection<EAInfo>("ea");
             EAInfo = collectionEA.Find(x => true).ToListAsync().GetAwaiter().GetResult();
             Reservoir = database.GetCollection<Reservoir>("reservoir");
