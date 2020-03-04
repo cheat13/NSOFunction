@@ -33,8 +33,7 @@ namespace NSOFunction
             database = client.GetDatabase("water");
             eaApproved = database.GetCollection<EaApproved>("EaApproved");
             recordProcessed = database.GetCollection<RecordProcessed>("recordprocessed");
-            surveyData = database.GetCollection<SurveyData>("Survey");
-            containerBlobData = database.GetCollection<ContainerBlobData>("ContainerBlobData");
+            surveyData = database.GetCollection<SurveyData>("SurveyCleaning");
 
             processFunction = new ProcessFunction(database);
 
@@ -76,11 +75,9 @@ namespace NSOFunction
                 var dataLst = new List<DataProcessed>();
                 var commuLst = new List<CommunitySample>();
 
-                var surveys = surveyData.Find(it => it.EA == ea)
-                    .ToListAsync()
-                    .GetAwaiter()
-                    .GetResult()
-                    .Select(it =>
+                var surveys = surveyData.Aggregate()
+                    .Match(it => it.EA == ea && it.Enlisted == true && it.DeletionDateTime == null)
+                    .Project(it =>
                         new
                         {
                             SampleType = it.SampleType,
@@ -88,7 +85,9 @@ namespace NSOFunction
                             ContainerName = it.ContainerName,
                             BlobName = it.BlobName
                         })
-                    .ToList();
+                    .ToListAsync()
+                    .GetAwaiter()
+                    .GetResult();
 
                 SubTask = surveys.Count();
 
