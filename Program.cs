@@ -167,8 +167,15 @@ namespace NSOFunction
                     }
                 }
 
-                WriteFile(ea, dataLst);
-                UpSertRecord(ea, true, string.Empty);
+                if (dataLst.Any())
+                {
+                    WriteFile(ea, dataLst);
+                    UpSertRecord(ea, true, string.Empty);
+                }
+                else
+                {
+                    UpSertRecord(ea, false, "Survey data in HDD not found.");
+                }
             }
             catch (System.Exception e)
             {
