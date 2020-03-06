@@ -149,7 +149,7 @@ namespace NSOFunction
                 }
             });
 
-            if (pumps.Any(it => it?.PumpAuto == true))
+            if (pumps?.Any(it => it?.PumpAuto == true) == true)
             {
                 switch (character)
                 {

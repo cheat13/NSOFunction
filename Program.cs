@@ -12,7 +12,7 @@ namespace NSOFunction
 {
     class Program
     {
-        private static string _path = @"???";
+        private static string _path = @"E:\ContranZip\DataBlob";
         private static IMongoDatabase database { get; set; }
         private static IMongoCollection<SurveyData> surveyData { get; set; }
         private static IMongoCollection<ReportEaInfo> reportEAInfo { get; set; }
