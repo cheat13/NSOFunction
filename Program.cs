@@ -95,7 +95,7 @@ namespace NSOFunction
 
                 foreach (var com in comLst)
                 {
-                    var existsComFile = Directory.Exists($@"{_path}\{com.ContainerName}\{com.BlobName}");
+                    var existsComFile = File.Exists($@"{_path}\{com.ContainerName}\{com.BlobName}");
                     if (existsComFile)
                     {
                         var commu = ReadModelFrom<CommunitySample>(com.ContainerName, com.BlobName);
@@ -124,7 +124,7 @@ namespace NSOFunction
                     var bld = grp.FirstOrDefault(it => it.SampleType == "b");
                     if (bld == null) continue;
 
-                    var existsBldFile = Directory.Exists($@"{_path}\{bld.ContainerName}\{bld.BlobName}");
+                    var existsBldFile = File.Exists($@"{_path}\{bld.ContainerName}\{bld.BlobName}");
                     if (existsBldFile)
                     {
                         var building = ReadModelFrom<BuildingSample>(bld.ContainerName, bld.BlobName);
@@ -147,8 +147,7 @@ namespace NSOFunction
                             {
                                 try
                                 {
-
-                                    var existsUntFile = Directory.Exists($@"{_path}\{unt.ContainerName}\{unt.BlobName}");
+                                    var existsUntFile = File.Exists($@"{_path}\{unt.ContainerName}\{unt.BlobName}");
                                     if (existsUntFile)
                                     {
                                         var unit = ReadModelFrom<HouseHoldSample>(unt.ContainerName, unt.BlobName);
