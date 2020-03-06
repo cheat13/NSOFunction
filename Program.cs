@@ -95,14 +95,11 @@ namespace NSOFunction
 
                 foreach (var com in comLst)
                 {
-                    try
+                    var existsComFile = Directory.Exists($@"{_path}\{com.ContainerName}\{com.BlobName}");
+                    if (existsComFile)
                     {
                         var commu = ReadModelFrom<CommunitySample>(com.ContainerName, com.BlobName);
                         commuLst.Add(commu);
-                    }
-                    catch (System.Exception)
-                    {
-                        continue;
                     }
                 }
 
@@ -127,7 +124,8 @@ namespace NSOFunction
                     var bld = grp.FirstOrDefault(it => it.SampleType == "b");
                     if (bld == null) continue;
 
-                    try
+                    var existsBldFile = Directory.Exists($@"{_path}\{bld.ContainerName}\{bld.BlobName}");
+                    if (existsBldFile)
                     {
                         var building = ReadModelFrom<BuildingSample>(bld.ContainerName, bld.BlobName);
 
@@ -149,15 +147,13 @@ namespace NSOFunction
                             {
                                 try
                                 {
-                                    try
+
+                                    var existsUntFile = Directory.Exists($@"{_path}\{unt.ContainerName}\{unt.BlobName}");
+                                    if (existsUntFile)
                                     {
                                         var unit = ReadModelFrom<HouseHoldSample>(unt.ContainerName, unt.BlobName);
                                         var dataProcessedLst = processFunction.UnitProcessing(ea, unit, building, qryCommu);
                                         dataLst.AddRange(dataProcessedLst);
-                                    }
-                                    catch (System.Exception)
-                                    {
-                                        continue;
                                     }
 
                                     CurrentSubTask++;
@@ -169,10 +165,6 @@ namespace NSOFunction
                                 }
                             }
                         }
-                    }
-                    catch (System.Exception)
-                    {
-                        continue;
                     }
                 }
 
