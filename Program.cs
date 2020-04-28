@@ -29,11 +29,11 @@ namespace NSOFunction
 
         static void Main(string[] args)
         {
-            var client = new MongoClient("mongodb://firstclass:Th35F1rstCla55@mongodbnewzfdggw5bmqhbq-vm0.southeastasia.cloudapp.azure.com/water");
-            database = client.GetDatabase("water");
+            var client = new MongoClient("mongodb://firstclass:Th35F1rstCla55@mongoquickx4h3q4klpbxtq-vm0.southeastasia.cloudapp.azure.com/wdata");
+            database = client.GetDatabase("wdata");
             eaApproved = database.GetCollection<EaApproved>("EaApproved");
             recordProcessed = database.GetCollection<RecordProcessed>("recordprocessed");
-            surveyData = database.GetCollection<SurveyData>("SurveyCleaning");
+            surveyData = database.GetCollection<SurveyData>("Survey");
 
             processFunction = new ProcessFunction(database);
 
