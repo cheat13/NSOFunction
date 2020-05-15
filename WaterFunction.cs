@@ -596,22 +596,22 @@ namespace NSOFunction
                     CanComputeCubicMeterSurfaceForService = status.CheckStatusCompute(new List<StatusCompute> { serSurvey.CanCompute, localPool.CanComputeCubicMeterSurfaceForService }),
                     CanComputeCubicMeterSurfaceForProduct = status.CheckStatusCompute(new List<StatusCompute> { proSurvey.CanCompute, localPool.CanComputeCubicMeterSurfaceForProduct }),
                     CanComputeCubicMeterSurfaceForDrink = status.CheckStatusCompute(new List<StatusCompute> { driSurvey.CanCompute, localPool.CanComputeCubicMeterSurfaceForDrink }),
-                    CubicMeterSurfaceForAgriculturePool = agrSurvey.CubicMeterPool,
+                    CubicMeterSurfaceForAgriculturePool = agrSurvey.CubicMeterPool + localPool.CubicMeterSurfaceForAgriculture,
                     CubicMeterSurfaceForAgricultureRiver = agrSurvey.CubicMeterRiver,
                     CubicMeterSurfaceForAgricultureIrrigation = agrSurvey.CubicMeterIrrigation,
                     CubicMeterSurfaceForAgricultureRain = agrSurvey.CubicMeterRain,
                     CubicMeterSurfaceForAgriculture = agrSurvey.CubicMeter + localPool.CubicMeterSurfaceForAgriculture,
-                    CubicMeterSurfaceForServicePool = serSurvey.CubicMeterPool,
+                    CubicMeterSurfaceForServicePool = serSurvey.CubicMeterPool + localPool.CubicMeterSurfaceForService,
                     CubicMeterSurfaceForServiceRiver = serSurvey.CubicMeterRiver,
                     CubicMeterSurfaceForServiceIrrigation = serSurvey.CubicMeterIrrigation,
                     CubicMeterSurfaceForServiceRain = serSurvey.CubicMeterRain,
                     CubicMeterSurfaceForService = serSurvey.CubicMeter + localPool.CubicMeterSurfaceForService,
-                    CubicMeterSurfaceForProductPool = proSurvey.CubicMeterPool,
+                    CubicMeterSurfaceForProductPool = proSurvey.CubicMeterPool + localPool.CubicMeterSurfaceForProduct,
                     CubicMeterSurfaceForProductRiver = proSurvey.CubicMeterRiver,
                     CubicMeterSurfaceForProductIrrigation = proSurvey.CubicMeterIrrigation,
                     CubicMeterSurfaceForProductRain = proSurvey.CubicMeterRain,
                     CubicMeterSurfaceForProduct = proSurvey.CubicMeter + localPool.CubicMeterSurfaceForProduct,
-                    CubicMeterSurfaceForDrinkPool = driSurvey.CubicMeterPool,
+                    CubicMeterSurfaceForDrinkPool = driSurvey.CubicMeterPool + localPool.CubicMeterSurfaceForDrink,
                     CubicMeterSurfaceForDrinkRiver = driSurvey.CubicMeterRiver,
                     CubicMeterSurfaceForDrinkIrrigation = driSurvey.CubicMeterIrrigation,
                     CubicMeterSurfaceForDrinkRain = driSurvey.CubicMeterRain,
@@ -622,7 +622,7 @@ namespace NSOFunction
                     AdjustedCubicMeterSurfaceForDrink = driSurvey.Adjusted || localPool.AdjustedCubicMeterSurfaceForDrink,
                 };
 
-                return poolInfoLst.Prepend(localPool).ToList();
+                return poolInfoLst.Prepend(localSurvey).ToList();
             }
             else
             {
